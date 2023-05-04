@@ -1,0 +1,214 @@
+.hero-slider-single-item--style-1{
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+    .content-box{
+        position: absolute;
+        width: 100%;
+        left: 0;
+        z-index: 11;
+        padding: 40px 20px;
+        top: 20px;
+
+        
+        @include breakpoint(large){
+            padding: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .title-tag{
+            color: $headingColor;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.71;
+            display: block;
+            opacity: 0;
+        }
+
+        .title{
+            font-size: 36px;
+            font-weight: 900;
+            line-height: 1.28;
+            margin-bottom: 20px;
+            opacity: 0;
+            @include breakpoint(small){
+                font-size: 48px;
+            }
+            @include breakpoint(medium){
+                font-size: 46px;
+            }
+            @include breakpoint(large){
+                font-size: 56px;
+            }
+            @include breakpoint(xlarge){
+                font-size: 60px;
+            }
+            @include breakpoint(xxlarge){
+                font-size: 70px;
+            }
+        }
+
+        p{
+            width: auto;
+            opacity: 0;
+            margin-bottom: 0;
+            @include breakpoint(xxxlarge){
+                width: 425px;
+            }
+        }
+
+        .btn{
+            margin-top: 30px;
+            @include breakpoint(medium){
+                margin-top: 45px;
+            }
+            opacity: 0;
+        }
+    }
+    
+    .image{
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        z-index: 9;
+        height: 330px;
+        opacity: 0;
+        @include breakpoint(small){
+            height: 350px;
+        }
+        @include breakpoint(medium){
+            height: 358px;
+        }
+        @include breakpoint(large){
+            height: auto;
+            right: 20px;
+        }
+        @include breakpoint(xlarge){
+            right: 70px;
+        }
+        @include breakpoint(xxlarge){
+            right: 120px;
+        }
+        @include breakpoint(xxxlarge){
+            right: 184px;
+        }
+    }
+
+    .image-shape{
+        position: absolute;
+        border-radius: 50%;
+        width: 534px;
+        height: 534px;
+        z-index: 1;
+        top: 0;
+        right: 187px;
+        display: none;
+        background: rgba($white, .2);
+        visibility: hidden;
+        @include breakpoint(large){
+            display: block;
+            right: 20px;
+        }
+        @include breakpoint(xlarge){
+            right: 70px;
+        }
+        @include breakpoint(xxlarge){
+            right: 120px;
+        }
+        @include breakpoint(xxxlarge){
+            right: 187px;
+        }
+        &::before{
+            position: absolute;
+            content: "";
+            border-radius: 50%;
+            width: 434px;
+            height: 434px;
+            z-index: 2;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba($white, .1);
+        }
+        &::after{
+            position: absolute;
+            border-radius: 50%;
+            content: "";
+            width: 340px;
+            height: 340px;
+            z-index: 3;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba($white, .1);
+        }
+    }
+
+    .hero-slider-shape{
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+        visibility: hidden;
+        @include breakpoint(large){
+            visibility: visible;
+        }
+        &.hero-slider-top-shape{
+            top: 40px;
+            left: 40px;
+        }
+
+        &.hero-slider-bottom-shape{
+            bottom: 60px;
+            right: 60px;
+        }
+    }
+
+    &.swiper-slide-active{
+        .image{
+            opacity: 1;
+            animation: fadeInUp 2s linear backwards;
+        }
+        .image-shape{
+            visibility: visible;
+            animation: zoomIn 1.5s ease 2s backwards;
+            &::before{
+                animation: zoomIn 1s ease 2.2s backwards;
+            }
+            &::after{
+                animation: zoomIn 1s ease 2.5s backwards;
+            }
+        }
+        .content-box{
+            .title-tag{
+                animation: fadeInUp 1s linear backwards;
+                opacity: 1;
+            }
+    
+            .title{
+                animation: fadeInUp 1.5s linear backwards;
+                opacity: 1;
+            }
+
+            p{
+                animation: fadeInUp 1.5s linear backwards;
+                opacity: 1;
+            }
+    
+            .btn{
+                animation: fadeInUp 2s linear  backwards;
+                opacity: 1;
+            }
+        }
+        .hero-slider-shape{
+           opacity: 1;
+            &.hero-slider-top-shape{
+               animation: zoomIn 1s linear backwards;
+            }
+    
+            &.hero-slider-bottom-shape{
+                animation: zoomIn 1s linear backwards;
+            }
+        }
+    }
+}

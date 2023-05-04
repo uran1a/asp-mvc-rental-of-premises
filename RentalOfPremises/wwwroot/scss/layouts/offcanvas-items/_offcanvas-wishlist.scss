@@ -1,0 +1,49 @@
+.offcanvas-products-list{
+    .single-item{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        &:last-child{margin-bottom: 0;}
+    
+        .box{
+            display: flex;
+            align-items: center;
+        }
+        .image{
+            width: 90px;
+            overflow: hidden;
+            margin-right: 20px;
+    
+            img{
+                width: 100%;
+            }
+        }
+        .content{
+            .title {
+                display: block;
+                font-weight: 700;
+            }
+        }
+    }
+}
+
+.offcanvas-action-link{
+    margin-top: 40px;
+
+    .btn{
+        display: block;
+        padding: 10px 30px;
+        text-align: center;
+        font-weight: 600;
+        text-transform: capitalize;
+        border: 1px border transparent;
+        background: $themeColor;
+        color: $white;
+        margin-bottom: 30px;
+
+        &:last-child{
+            margin-bottom: 0;
+        }
+    }
+}

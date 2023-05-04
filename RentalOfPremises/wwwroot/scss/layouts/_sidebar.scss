@@ -1,0 +1,53 @@
+/*****************************
+* Layouts - Sidebar 
+*****************************/
+.siderbar-section{
+    margin-top: 60px;
+    @include breakpoint(medium){
+        margin-top: 80px;
+    }
+    @include breakpoint(large){
+        margin-top: 0;
+    }
+}
+.sidebar-single-widget{
+    margin-bottom: 60px;
+    &:last-child{
+        margin-bottom: 0;
+    }
+
+    p{
+        color: $secondaryColor;
+        margin-top: 20px;
+    }
+
+    &--seperator{
+        padding-bottom: 40px;
+        border-bottom: 1px solid #DBDBDB;
+    }
+}
+.sidebar-title{
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding-bottom: 12px;
+    position: relative;
+
+    &.title-border{
+        border-bottom: 1px solid #e6e6e6;
+        margin-bottom: 30px;
+    }
+}
+
+.sidebar-banner {
+    margin: 0 auto;
+    display: block;
+}
+
+@import "sidebar-widgets/filter-type-select";
+@import "sidebar-widgets/filter-type-price-range";
+@import "sidebar-widgets/filter-type-tags";
+@import "sidebar-widgets/news-letter";
+@import "sidebar-widgets/social-icon";
+@import "sidebar-widgets/catagory";
+@import "sidebar-widgets/blog-post";

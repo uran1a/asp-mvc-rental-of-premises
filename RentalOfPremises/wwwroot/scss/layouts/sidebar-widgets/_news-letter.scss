@@ -1,0 +1,38 @@
+.widget-newsletter-form{
+    position: relative;
+    input{
+        width: 100%;
+        border: 2px solid #A8DADC;
+        border-radius: 25px;
+        background: $white;
+        font-size: 12px;
+        color: $bodyColor;
+        padding: 15px 55px 15px 40px;
+        &::placeholder{
+            color: #A8DADC;
+        }
+    }
+
+    button{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%) rotate(-45deg);
+        right: 8px;
+        color: $white;
+        text-transform: uppercase;
+        height: 35px;
+        width: 35px;
+        background: $secondaryColor;
+        border-radius: 50%;
+        transition:  $baseTransition;
+        line-height: 35px;
+        text-align: center;
+        span{
+            font-size: 16px;
+        }
+        &:hover{
+            background: $themeColor;
+        }
+    }
+
+}

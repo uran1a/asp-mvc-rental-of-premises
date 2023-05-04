@@ -1,0 +1,79 @@
+/*****************************
+* Components - Banner Section
+*****************************/
+
+/* Banner Style : Banner Card Item */
+.banner-card-single-item{
+    position: relative;
+
+    .image{
+        img{
+            border-radius: 30px;
+        }
+    }
+
+    .content{
+        position: absolute;
+        top: 50%;
+        left: 32px;
+        transform: translateY(-50%);
+        @include breakpoint(medium){
+            top: 40px;
+            left: 32px;
+            transform: translateY(0);
+        }
+        .tag{
+            font-size: 14px;
+            font-weight: 700;
+            color: $headingColor;
+            letter-spacing: 2.6px;
+            margin-bottom: 5px;
+            span{
+                &.dark{color: $bodyColor;}
+                &.white{color: $white;}
+            }
+        }
+
+        .title{
+            font-size: 24px;
+            font-weight: 700;
+            position: relative;
+            display: inline-block;
+            &::after{
+                position: absolute;
+                content: "";
+                width: 100%;
+                height: 1px;
+                background: $white;
+                left: 0;
+                bottom: -12.5px;
+            }
+
+            span{
+                &.dark{color: $bodyColor;}
+                &.white{color: $white;}
+            }
+        }
+        .text-link{
+            font-size: 16px;
+            font-weight: 700;
+            display: block;
+            margin-top: 13.5px;
+            &.dark{color: $bodyColor;}
+            &.white{color: $white;}
+
+            &:hover{
+                text-decoration: underline;
+            }
+        }
+    }
+
+    .banner-cad-note{
+        position: absolute;
+        left: 32px;
+        bottom: 24px;
+        font-size: 14px;
+        font-weight: 300;
+        color: $white;
+    }
+}

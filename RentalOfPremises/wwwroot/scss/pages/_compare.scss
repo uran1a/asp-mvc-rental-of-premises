@@ -1,0 +1,98 @@
+/*****************************
+* Pages - Compare
+*****************************/
+
+.compare-table .table tbody tr td.first-column {
+    min-width: 180px;
+    font-size: 17px;
+    font-weight: 600;
+    margin: 0;
+    line-height: 1;
+}
+
+.compare-table .table tbody tr td {
+    text-align: center;
+    border: none;
+    padding: 25px 30px;
+    vertical-align: middle;
+    border-bottom: 1px solid $borderColor;
+    border-left: 1px solid $borderColor;
+
+    &.product-image-title {
+        min-width: 305px;
+        vertical-align: bottom;
+
+        .image {
+            margin-bottom: 40px;
+            display: block;
+
+            img{
+                border-radius: 10px;
+            }
+        }
+
+        .category {
+            color: #333;
+            font-size: 20px;
+            letter-spacing: 0.5px;
+            line-height: 15px;
+            margin-bottom: 7px;
+            margin-top: 15px;
+            text-transform: capitalize;
+            display: block;
+        }
+
+        .title {
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 20px;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .category, .title{
+            &:hover{color: $themeColor;}
+        }
+    }
+
+
+    &.pro-desc p {
+        text-align: left;
+        margin: 0;
+    }
+
+    &.pro-price {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    &.pro-color {
+        font-size: 15px;
+        font-weight: 600;
+    }
+
+    &.pro-addtocart .add-to-cart {
+        span {
+            transition: .3s;
+            font-size: 13px;
+            text-transform: uppercase;
+            font-weight: 700;
+            line-height: 21px;
+            overflow: hidden;
+            display: block;
+            text-align: center;
+        }
+
+        &.pro-stock {
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .pro-remove button {
+            border: none;
+            background-color: transparent;
+            padding: 0;
+        }
+    }
+    
+}

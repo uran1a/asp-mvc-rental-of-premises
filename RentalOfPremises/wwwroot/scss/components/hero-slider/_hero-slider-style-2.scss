@@ -1,0 +1,157 @@
+.hero-slider-single-item--style-2{
+    background: #1A1A2B;
+    position: relative;
+    padding-top: 30px;
+    padding-bottom: 85px;
+
+    @include breakpoint(medium){
+        padding-top: 70px;
+        padding-bottom: 125px;
+    }
+    @include breakpoint(large){
+        padding: 0;
+        height: 700px;
+    }
+    @include breakpoint(xlarge){
+        height: 800px;
+    }
+    @include breakpoint(xxxlarge){
+        height: 950px;
+    }
+    .image{
+        visibility: hidden;
+        text-align: center;
+        @include breakpoint(large){
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);  
+            right: 0;
+            width: 50%;
+        }
+    }
+    .content-box{
+        margin-top: 20px;
+        @include breakpoint(large){
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        
+
+        .title-tag{
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 1.71;
+            display: block;
+            opacity: 0;
+            color: $white;
+        }
+
+        .title{
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1.42;
+            margin-bottom: 20px;
+            opacity: 0;
+            color: $white;
+            @include breakpoint(small){
+                font-size: 48px;
+            }
+            @include breakpoint(medium){
+                font-size: 46px;
+            }
+            @include breakpoint(large){
+                font-size: 56px;
+            }
+            @include breakpoint(xlarge){
+                font-size: 60px;
+            }
+            @include breakpoint(xxlarge){
+                font-size: 70px;
+            }
+
+            .text-mark{
+                font-weight: 900;
+                position: relative;
+                display: inline-block;
+                z-index: 1;
+            }
+        }
+
+        p{
+            width: auto;
+            opacity: 0;
+            color: $white;
+            margin-bottom: 0;
+            @include breakpoint(xxxlarge){
+                width: 425px;
+            }
+        }
+
+        .btn{
+            margin-top: 30px;
+            @include breakpoint(medium){
+                margin-top: 45px;
+            }
+            opacity: 0;
+        }
+    }
+
+    .hero-slider-shape{
+        position: absolute;
+        display: none;
+        @include breakpoint(large){
+            display: block;
+        }
+    }
+
+    .hero-slider-top-shape{
+        top: 0;
+        left: 0;
+    }
+
+    .hero-slider-bottom-shape{
+        bottom: 0;
+        right: 0;
+    }
+
+    &.swiper-slide-active{
+        .image{
+            visibility: visible;
+            animation: zoomIn 2s ease 0s backwards;
+        }
+        .content-box{
+            .title-tag{
+                animation: fadeInUp 1s linear backwards;
+                opacity: 1;
+            }
+    
+            .title{
+                animation: fadeInUp 1.5s linear backwards;
+                opacity: 1;
+            }
+
+            p{
+                animation: fadeInUp 1.5s linear backwards;
+                opacity: 1;
+            }
+    
+            .btn{
+                animation: fadeInUp 2s linear  backwards;
+                opacity: 1;
+            }
+        }
+        .hero-slider-shape{
+           opacity: 1;
+            &.hero-slider-top-shape{
+               animation: zoomIn 1s linear backwards;
+            }
+    
+            &.hero-slider-bottom-shape{
+                animation: zoomIn 1s linear backwards;
+            }
+        }
+    }
+
+}

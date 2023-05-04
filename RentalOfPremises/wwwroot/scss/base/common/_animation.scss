@@ -1,0 +1,165 @@
+/*Animation CSS*/
+
+@keyframes animate-top-bottom {
+  0%{
+    transform: translateY(30px);
+  }
+  50%{
+    transform: translateY(0px);
+  }
+  100%{
+    transform: translateY(-30px);
+  }
+}
+
+.animate-top-bottom{
+  animation-name: animate-top-bottom;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: backwards;
+  animation-direction: alternate;
+}
+
+@keyframes animate-left-right {
+  0%{
+    transform: translateX(30px);
+  }
+  50%{
+    transform: translateX(0px);
+  }
+  100%{
+    transform: translateX(-30px);
+  }
+}
+
+.animate-left-right{
+  animation-name: animate-left-right;
+  animation-duration: 3s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: backwards;
+  animation-direction: alternate;
+}
+
+@keyframes animate-zoom-in-out {
+  0%{
+    transform: scale(1);
+  }
+  50%{
+    transform: scale(.95);
+  }
+  100%{
+    transform: scale(1);
+  }
+}
+
+.animate-zoom-in-out{
+  animation-name: animate-zoom-in-out;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: backwards;
+  animation-direction: alternate;
+}
+
+
+@keyframes wave-animate{
+  0%{
+    opacity: 1;
+    transform: scale(.8);
+
+  }
+  100%{
+    opacity: 0;
+    transform: scale(1.3);
+  }
+}
+
+.wave-animate{
+  animation-name: wave-animate;
+  animation-duration: 6s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-fill-mode: backwards;
+  animation-direction: alternate;
+}
+
+
+@keyframes fadeInDown {
+  0% {
+      opacity: 0;
+      -webkit-transform: translate3d(0, -100%, 0);
+      transform: translate3d(0, -100%, 0);
+  }
+  to {
+      opacity: 1;
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+  }
+}
+
+
+.banner-animate--flash{
+  position: relative;
+  overflow: hidden;
+  &::before{
+    background: rgba(255, 255, 255, 0.3);
+    content: "";
+    top: 0;
+    left: 0;
+    height: 100%;
+    position: absolute;
+    transition: all .8s ease-in-out;
+    transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, -120%, 0);
+    width: 100%;
+    z-index: 1;
+  }
+
+  &:hover::before{
+    opacity: 1;
+    transform: scale3d(1.9, 1.4, 1) rotate3d(0, 0, 1, 45deg) translate3d(0, 120%, 0);
+  }
+}
+
+.banner-animate--wave{
+  position: relative;
+  &::before{
+      background: rgba(255,255,255,0.3);
+      bottom: 0;
+      content: "";
+      left: 50%;
+      position: absolute;
+      right: 50%;
+      top: 0;
+      opacity: 1;
+      width: 0;
+  }
+
+  &::after{
+      background: rgba(255,255,255,0.6);
+      bottom: 50%;
+      content: "";
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 50%;
+      opacity: 1;
+      width: 0;
+  }
+
+  &:hover::before{
+      left: 0;
+      right: 0;
+      opacity: 0;
+      width: auto;
+      transition: all 900ms linear;
+  }
+  &:hover::after{
+      top: 0;
+      bottom: 0;
+      opacity: 0;
+      width: auto;
+      transition: all 900ms linear;
+  }
+}

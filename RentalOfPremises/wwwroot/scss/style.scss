@@ -1,0 +1,73 @@
+/*-----------------------------------------------------------------------------------
+    Template Name: Martup
+    Template Description: Martup -  Multipurpose eCommerce HTML Template
+    Version: 1.0
+-----------------------------------------------------------------------------------
+    
+    CSS INDEX
+    ===================
+	
+    -> Base - Default
+
+    -> Components - Hero Slider Section
+    -> Components - Shipping Section
+    -> Components - Banner Section
+    -> Components - Company logo Section
+    -> Components - Product Section
+    -> Components - Newsletter Section
+    -> Components - Breadcrumb
+    -> Components - Pagination
+
+    -> Pages - Shop
+    -> Pages - Product Details
+    -> Pages - About
+    -> Pages - Blogs
+    -> Pages - Contact
+    -> Pages - FAQ
+    -> Pages - Cart
+    -> Pages - Compare
+    -> Pages - Checkout
+    -> Pages - Log In
+    -> Pages - My Account
+
+    -> Layouts - Header
+    -> Layouts - Footer
+    -> Layouts - Sidebar 
+-----------------------------------------------------------------------------------*/
+
+// Default
+@import "base/mixins";
+@import "base/variabls";
+@import "base/common";
+
+
+// Components
+@import "components/hero-slider";
+@import "components/shipping-section";
+@import "components/banner-section";
+@import "components/company-slider-section";
+@import "components/product-section";
+@import "components/newsletter-section";
+@import "components/breadcrumb";
+@import "components/pagination";
+
+
+
+// Pages
+@import "pages/shop";
+@import "pages/product-details";
+@import "pages/about";
+@import "pages/blog";
+@import "pages/contact";
+@import "pages/faq";
+@import "pages/cart";
+@import "pages/compare";
+@import "pages/checkout";
+@import "pages/login";
+@import "pages/my-account";
+
+
+// Layout
+@import "layouts/header";
+@import "layouts/footer";
+@import "layouts/sidebar";

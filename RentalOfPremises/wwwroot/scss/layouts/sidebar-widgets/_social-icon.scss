@@ -1,0 +1,27 @@
+.widget-social-icon{
+    display: flex;
+    a{
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: $secondaryColor;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-right: 27px;
+        border: 2px solid  $secondaryColor;
+        img{
+            filter: brightness(0) invert(1);
+        }
+        &:hover{
+            background: $white;
+            img{
+                filter: brightness(1) invert(0);
+            }
+        }
+        &:last-child{
+            margin-right: 0;
+        }
+        
+    }
+}

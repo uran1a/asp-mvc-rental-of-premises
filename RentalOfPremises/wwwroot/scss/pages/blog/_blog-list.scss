@@ -1,0 +1,43 @@
+.blog-list-single-item{
+    .image{
+        img{
+            border-radius: 30px;
+        }
+    }
+
+    .post-meta{
+        margin-top: 25px;
+        .catagory{
+            color: $colorOrange;
+            font-size: 16px;
+            font-weight: 700;
+            margin-right: 20px;
+        }
+
+        .date{
+            font-size: 16px;
+            color: $bodyColor;
+        }
+    }
+
+    .content{
+        margin-top: 20px;
+        margin-bottom: 20px;
+        .title{
+            color: $headingColor;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 20px;
+
+            & a:hover{
+                color: $secondaryColor;
+            }
+        }
+    }
+
+    .author{
+        font-size: 16px;
+        font-weight: 700;
+        color: $themeColor;
+    }
+}

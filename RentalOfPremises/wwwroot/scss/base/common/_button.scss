@@ -1,0 +1,154 @@
+/*Buttion CSS*/
+.btn {
+	font-size: 16px;
+	font-weight: 700;
+	transition: $baseTransition;
+	position: relative;
+	text-transform: uppercase;
+	border: none;
+	align-items: center;
+	&:focus {
+		box-shadow: none;
+	}
+
+	&-sm {
+		padding: 9px 30px;
+	}
+
+	&-md {
+		border-radius: 30px;
+		padding: 15px 28px;
+		@include breakpoint(large){
+			padding: 15px 35px;;
+		}
+		@include breakpoint(xlarge){
+			padding: 15px 50px;;
+		}
+	}
+
+	&-lg {
+		border-radius: 30px;
+		padding: 7px 20px;
+		@include breakpoint(small){
+			padding: 12px 40px;;
+		}
+		@include breakpoint(medium){
+			padding: 15px 45px;
+		}
+		@include breakpoint(large){
+			padding: 18px 54px;
+		}
+		@include breakpoint(xlarge){
+			padding: 18px 74px;
+		}
+	}
+
+	&-default {
+		color: $bodyColor;
+		background: $white;
+		box-shadow: 5px  10px 16px rgba($black, .1) !important;
+		border: 1px solid #F3F3F3;
+		&:hover {
+			color: $white;
+			background: $themeColor;
+			border-color:  $themeColor;
+		  }
+	}
+
+	&-default-alt {
+		color: $white;
+		background: $themeColor;
+		box-shadow: 5px  10px 16px rgba($black, .1) !important;
+		border: 1px solid #F3F3F3;
+	}
+
+	&-default-outline {
+		color: $bodyColor;
+		background: $white;
+		border: 1px solid $themeColor;
+		&:hover {
+			background: $themeColor;
+			color: $white;
+		}
+	}
+
+	&-radius{
+		border-radius: 30px;
+	}
+
+	// &-default-outline-alt {
+
+	// }
+
+	&.icon-left .material-icons{
+		padding-right: 10px;
+	}
+	&.icon-right .material-icons{
+		padding-left: 10px;
+	}
+	
+	&-section-bottom{
+		margin-top: 40px;
+		@include breakpoint(large){
+			margin-top: 60px;
+		}
+	}
+}
+
+
+// Wave Animate Video Button
+@keyframes animate-ripple{
+    50% {
+        box-shadow: 0 0 0 20px rgba($white, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba($white, 0);
+    }
+}
+  
+  .wave-btn{
+    display: block;
+    position: relative;
+    width: 65px;
+    height: 65px; 
+    background: $secondaryColor;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ripple{
+	  color: white;
+	  font-size: 40px;
+      &, &::before, &::after{
+        position: absolute;
+        box-shadow: 0 0 0 0 rgba($secondaryColor, .6);
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%; 
+        border-radius: 50%;
+        z-index: -1;
+        animation: animate-ripple 3s infinite linear backwards;
+        transform: translate(-50%, -50%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1;
+      }
+    
+  }
+
+
+  .ripple::before {
+    position: absolute;
+    content: "";
+    animation-delay: .5s;
+  }
+  
+  .ripple::after {
+    position: absolute;
+    content: "";
+    animation-delay: .9s;
+  }

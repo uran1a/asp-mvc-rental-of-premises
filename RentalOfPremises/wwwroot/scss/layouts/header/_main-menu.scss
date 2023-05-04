@@ -1,0 +1,114 @@
+/*Menu - large device */
+.menu-event{
+    position: relative;
+}
+
+.mainmenu-nav {
+    position: absolute;
+    background: white;
+    left: 0;
+    top: 0;
+    box-shadow: 0 0 10px #00000024;
+    border-radius: 5px;
+    font-size: 16px;
+    min-width: 200px;
+    transform: translate(0px, 31px) !important;
+    &.dropdown-menu{
+        padding: 0;
+        border: none;
+    }
+
+    a:hover{
+       color: $colorOrange;
+    }
+    @include breakpoint(xlarge){
+        width: 270px;
+    }
+    .has-dropdown{
+        position: absolute;
+        left: 100%;
+        top: 0;
+        min-width: 100%;
+        visibility: hidden;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: $baseTransition;
+        padding: 20px;
+        background: #fff;
+        box-shadow: 0 0 10px #00000024;
+        border-radius: 5px;
+
+        &.megamenu{
+            display: flex;
+            justify-content: space-between;
+            padding: 0;
+            width: 515px;
+            @include breakpoint(xlarge){
+                width: 600px;
+            }
+            .menu-content{
+                padding: 20px 15px;
+                @include breakpoint(xlarge){
+                    padding: 20px 30px;
+                }
+            }
+        }
+    }
+    
+    .menu-items{
+        display: block;
+        line-height: 50px;
+        border-bottom: 1px solid #ededed;
+        position: relative;
+        &:first-child{
+            padding-top: 0;
+        }
+        &:last-child{
+            padding-bottom: 0;
+            border: none;
+        }
+
+        & > a{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+
+            @include breakpoint(xlarge){
+                padding: 0 35px;
+            }
+        }
+
+        &:hover{
+            .has-dropdown{
+                visibility: visible;
+                opacity: 1;
+                transform: translateY(0px);
+            }
+        }
+    }
+
+    .menu-content{
+        .title{
+            font-weight: 700;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #ededed;
+        }
+        .submenu {
+            display: block;
+            line-height: 35px;
+            &:first-child{
+                padding-top: 0;
+            }
+            &:last-child{
+                padding-bottom: 0;
+                border: none;
+            }
+        }
+    }
+
+}
+
+.main-menu-event.dropdown-toggle::after{
+    display: none;
+}

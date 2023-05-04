@@ -1,0 +1,29 @@
+/*****************************
+* Pages - Log In
+*****************************/
+
+.account_form{
+
+    &.register{
+        margin-top: 60px;
+        @include breakpoint(medium){margin-top: 0;}
+    }
+
+    h3 {
+        font-size: 28px;
+        text-transform: capitalize;
+        font-weight: 700;
+        line-height: 22px;
+        margin-bottom: 30px;
+    }
+
+    form {
+        border: 1px solid $themeColor;
+        padding: 23px 20px 29px;
+        border-radius: 20px;
+    }
+}
+
+.login_submit * {
+    display: block;
+}

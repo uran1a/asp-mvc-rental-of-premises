@@ -1,0 +1,21 @@
+/*************************************
+* Components - Company logo Section
+**************************************/
+.company-slider-bg{
+    background: #F1FAEE;
+    border-radius: 30px;
+    padding: 40px 0;
+
+    @include breakpoint(medium){
+        padding: 60px 0;
+    }
+    @include breakpoint(xxlarge){
+        padding: 80px 0;
+    }
+}
+
+.company-slider-single-item{
+    .image{
+        text-align: center;
+    }
+}

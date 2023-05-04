@@ -1,0 +1,383 @@
+/***********************************
+* Components - Breadcrumb
+*************************************/
+
+/*Breadcrumb Style - 1*/
+.breadcrumb-wrapper--style-1{
+    overflow: hidden;
+    .breadcrumb-bg{
+        height: 280px;
+        overflow: hidden;
+        @include breakpoint(small){
+            height: 360px;
+        }
+        @include breakpoint(large){
+            height: 500px;
+        }
+        img{
+            object-fit: cover;
+            height: 100%;
+        }
+    }
+
+    .breadcrumb-content{
+        position: absolute;
+        left: 0;
+        top: 50%;
+        margin: 0 25px;
+        transform: translateY(-50%);
+        @include breakpoint(large){
+            top: 170px;
+            height: 100%;
+            bottom: 30px;
+            transform: translateY(0);
+        }
+        @include breakpoint(xlarge){
+            margin: 0 0;
+        }
+
+        .breadcrumb-wrapper{
+            // height: calc(100% - 200px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+
+            @include breakpoint(medium){
+                height: calc(100% - 150px);
+            }
+            @include breakpoint(large){
+                height: calc(100% - 200px);
+            }
+        }
+
+        .title-tag{
+            font-size: 14px;
+            font-weight: 700;
+            display: block;
+            color: #A8DADC;
+            margin-bottom: 10px;
+        }
+    
+        .title{
+            font-size: 28px;
+            font-weight: 300;
+            margin-bottom: 20px;
+            color: $white;
+            @include breakpoint(small){
+                font-size: 48px;
+            }
+            @include breakpoint(medium){
+                font-size: 46px;
+            }
+            @include breakpoint(large){
+                font-size: 56px;
+            }
+            @include breakpoint(xlarge){
+                font-size: 60px;
+            }
+            @include breakpoint(xxlarge){
+                font-size: 70px;
+            }
+    
+            .text-mark{
+                font-weight: 400;
+                display: inline-block;
+            }
+    }
+    
+        .breadcrumb-nav{
+            display: flex;
+            font-size: 14px;
+            & *{
+                color: #F1FAEE;
+            }
+            li{
+                margin-right: 20px;
+                position: relative;
+                &::after{
+                    position: absolute;
+                    content: "/";
+                    top: 0;
+                    left: calc(100% + 7px);
+                    visibility: visible;
+                }
+                &:last-child{
+                    margin-right: 0;
+                    &::after{
+                        visibility: hidden;
+                    }
+                }
+    
+                a:hover{
+                    color: $colorOrange;
+                }
+            }
+            
+        }
+    }
+}
+
+
+/*Breadcrumb Style - 2*/
+.breadcrumb-wrapper--style-2{
+    
+    &.breadcrumb-bg{
+        background: #A8DADC;
+        padding-top: 60px;
+        padding-bottom: 60px;
+        @include breakpoint(medium){
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+        @include breakpoint(large){
+            padding-top: 180px;
+            padding-bottom: 100px;
+        }
+        @include breakpoint(xlarge){
+            padding-top: 145px;
+            height: 750px;
+        }
+
+    }
+
+    .breadcrumb-content {
+        .logo{
+            margin-bottom: 35px;
+        }
+
+    }
+}
+
+
+/*Breadcrumb Style - 3*/
+.breadcrumb-wrapper--style-3{
+    &.breadcrumb-bg{
+        background: $themeColor;
+        padding: 60px 0;
+        @include breakpoint(medium){
+            padding: 80px 0;
+        }
+        @include breakpoint(large){
+            padding-top: 155px;
+            padding-bottom: 0;
+        }
+        @include breakpoint(xlarge){
+            padding-top: 155px;
+        }
+    }
+
+    .breadcrumb-hero-image{
+        text-align: center;
+        @include breakpoint(large){
+            text-align: left;
+        }
+        img{
+            border-radius: 52px;
+        }
+    }
+
+    .content{
+        margin-top: 30px;
+        @include breakpoint(large){
+            margin-top: 0;
+        }
+        color: $white;
+        .title-tag{
+            font-size: 22px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .title{
+            
+            font-weight: 900;
+            color: $white;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            font-size: 30px;
+            @include breakpoint(small){
+                font-size: 40px;
+            }
+            @include breakpoint(medium){
+                font-size: 46px;
+            }
+            @include breakpoint(large){
+                font-size: 35px;
+            }
+            @include breakpoint(xlarge){
+                font-size: 55px;
+            }
+            @include breakpoint(xxlarge){
+                font-size: 60px;
+            }
+            @include breakpoint(xxxlarge){
+                font-size: 70px;
+            }
+        }
+        .author-details{
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            .image{
+                margin-right: 20px;
+                img{
+                    border-radius: 50%;
+                }
+            }
+            .info span{
+                display: block;
+                margin-bottom: 5px;
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+            .position{
+                font-size: 14px;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .breadcrumb-nav{
+        margin-bottom: 70px;
+        display: flex;
+        font-size: 14px;
+        & *{
+            color: #F1FAEE;
+        }
+        li{
+            margin-right: 20px;
+            position: relative;
+            &::after{
+                position: absolute;
+                content: "/";
+                top: 0;
+                left: calc(100% + 7px);
+                visibility: visible;
+            }
+            &:last-child{
+                margin-right: 0;
+                &::after{
+                    visibility: hidden;
+                }
+            }
+
+            a:hover{
+                color: $colorOrange;
+            }
+        }
+        
+    }
+}
+
+/*Breadcrumb Style - 4*/
+.breadcrumb-wrapper--style-4{
+    &.breadcrumb-bg{
+        background: $themeColor;
+        padding: 60px 0;
+        @include breakpoint(medium){
+            padding: 80px 0;
+        }
+        @include breakpoint(large){
+            padding-top: 155px;
+            padding-bottom: 85px;
+        }
+        @include breakpoint(xlarge){
+            padding-top: 155px;
+            padding-bottom: 285px;
+        }
+    }
+
+    .content{
+        color: $white;
+        .title-tag{
+            font-size: 22px;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .title{
+            
+            font-weight: 900;
+            color: $white;
+            margin-top: 20px;
+            margin-bottom: 30px;
+            font-size: 30px;
+            @include breakpoint(small){
+                font-size: 40px;
+            }
+            @include breakpoint(medium){
+                font-size: 46px;
+            }
+            @include breakpoint(large){
+                font-size: 35px;
+            }
+            @include breakpoint(xlarge){
+                font-size: 55px;
+            }
+            @include breakpoint(xxlarge){
+                font-size: 60px;
+            }
+            @include breakpoint(xxxlarge){
+                font-size: 70px;
+            }
+        }
+
+        p{
+            max-width: 961px;
+        }
+        .author-details{
+            margin-top: 40px;
+            display: flex;
+            align-items: center;
+            .image{
+                margin-right: 20px;
+                img{
+                    border-radius: 50%;
+                }
+            }
+            .info span{
+                display: block;
+                margin-bottom: 5px;
+                &:last-child{
+                    margin-bottom: 0;
+                }
+            }
+            .position{
+                font-size: 14px;
+                font-weight: 700;
+            }
+        }
+    }
+
+    .breadcrumb-nav{
+        margin-bottom: 70px;
+        display: flex;
+        font-size: 14px;
+        & *{
+            color: #F1FAEE;
+        }
+        li{
+            margin-right: 20px;
+            position: relative;
+            &::after{
+                position: absolute;
+                content: "/";
+                top: 0;
+                left: calc(100% + 7px);
+                visibility: visible;
+            }
+            &:last-child{
+                margin-right: 0;
+                &::after{
+                    visibility: hidden;
+                }
+            }
+
+            a:hover{
+                color: $colorOrange;
+            }
+        }
+        
+    }
+}

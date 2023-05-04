@@ -1,0 +1,184 @@
+/*************************************
+* Components - Newsletter Section
+**************************************/
+
+.newsletter-area{
+    padding: 40px 30px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 1;
+    flex-direction: column;
+    @include breakpoint(small){
+        padding: 40px 40px;
+    }
+    @include breakpoint(medium){
+        padding: 60px 60px;
+    }
+    @include breakpoint(large){
+        padding: 50px 50px;
+        flex-direction: row;
+    }
+    @include breakpoint(xlarge){
+        padding: 40px 40px;
+    }
+    @include breakpoint(xxlarge){
+        padding: 60px 60px;
+    }
+    @include breakpoint(xxxlarge){
+        padding: 70px 70px;
+    }
+    &-style-1{
+        background: #F1FAEE;
+        border-radius: 30px;
+        .content{
+            p{
+                color: $bodyColor;
+            }
+        }
+    }
+    &-style-2{
+        background: #e3e3e6;
+        .content{
+            p{
+                color: $secondaryColor;
+            }
+        }
+    }
+
+    &::after{
+        position: absolute;
+        content: "";
+        width: 10px;
+        height: 200px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: $white;
+        border-radius: 10px;
+        visibility: hidden;
+        @include breakpoint(xxlarge){
+            visibility: visible;
+        }
+    }
+
+    .content{
+        position: relative;
+        margin-bottom: 35px;
+        &:last-child{margin-bottom: 0;}
+        width: 100%;
+        @include breakpoint(small){
+            max-width: 490px;  
+        }
+        @include breakpoint(large){
+            margin-bottom: 0; 
+            max-width: 50%;
+        }
+        @include breakpoint(xlarge){
+            max-width: 420px;
+        }
+        &-left{
+            text-align: left;
+        }
+        &-right{
+            text-align: left;
+            @include breakpoint(large){
+                text-align: right;
+            }
+        }
+        .title{
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.458;
+            margin-bottom: 5px;
+        }
+
+        p{
+            margin-bottom: 15px;
+        }
+
+        .apps-btn{
+            text-align: left;
+            @include breakpoint(large){
+                text-align: right;
+            }
+            a{
+                margin-bottom: 10px;
+                display: inline-block;
+                margin-right: 9px;
+                @include breakpoint(small){
+                    margin-right: 16px;
+                    margin-bottom: 0;
+                }
+                &:last-child{margin-right: 0;}
+
+                
+            }
+        }
+
+        .image-shape {
+            position: absolute;
+            visibility: hidden;
+            z-index: -1;
+            @include breakpoint(xlarge){
+                visibility: visible;
+            }
+            &-left{
+                top: 0;
+                right: 0px;
+                @include breakpoint(xxxlarge){
+                    right: -35px;
+                }
+            }
+            &-right{
+                top: 0;
+                left: 0px;
+                @include breakpoint(xxxlarge){
+                    left: -35px;
+                }
+            }
+        }
+    }
+
+    .newsletter-form{
+        position: relative;
+        input{
+            width: 100%;
+            border: 2px solid #A8DADC;
+            border-radius: 23px;
+            background: $white;
+            font-size: 16px;
+            color: $bodyColor;
+            padding: 10px 120px 10px 25px;
+            &::placeholder{
+                color: #A8DADC;
+            }
+            @include breakpoint(small){
+                padding: 10px 160px 10px 40px;
+            }
+        }
+    
+        button{
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            right: 6px;
+            font-size: 16px;
+            font-weight: 700;
+            color: $white;
+            text-transform: uppercase;
+            padding: 6px 10px;
+            background: #A8DADC;
+            border-radius: 25px;
+            transition:  $baseTransition;
+            @include breakpoint(small){
+                padding: 6px 30px;
+            }
+            &:hover{
+                background: $themeColor;
+            }
+        }
+    }
+
+}
+

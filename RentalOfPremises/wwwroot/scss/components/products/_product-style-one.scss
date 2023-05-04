@@ -1,0 +1,150 @@
+/*Product Style - 1*/
+.product-single-item-style-1 {
+    background: #FAFAFA;
+    border-radius: 30px;
+    .image{
+        position: relative;
+        display: block;
+        border-radius: 30px;
+        img{
+            border-radius: 30px;
+        }
+
+        .tooltip-tag-items{
+            position: absolute;
+            top: 0;
+            right: 0;
+            li{
+                color: $white;
+                font-size: 14px;
+                font-weight: bold;
+                padding: 20px 15px;
+                border-radius: 0 30px 0 0;
+            }
+            .color-green{
+                background: #2A9D8F;
+            }
+            .color-yellow{
+                background: #F4A261;
+            }
+        }
+    }
+
+    .content{
+        padding: 10px 15px 20px;
+        @include breakpoint(small){
+            padding: 20px 38px 35px;
+        }
+        @include breakpoint(medium){
+            padding: 10px 20px 20px;
+        }
+        @include breakpoint(large){
+            padding: 20px 20px 20px;
+        }
+        @include breakpoint(xlarge){
+            padding: 10px 20px 20px;
+        }
+        @include breakpoint(xxlarge){
+            padding: 20px 38px 35px;
+        }
+        .top{
+            margin-bottom: 15px;
+            .catagory{
+                font-size: 14px;
+                font-weight: 700;
+                margin-bottom: 8px;
+                display: inline-block;
+            }
+            
+            .title a{
+                display: inline-block;
+                font-size: 22px;
+                font-weight: 700;
+                transition: $baseTransition;
+                color: $bodyColor;
+                
+                &:hover{
+                    color: #2A9D8F;
+                }
+            }
+    
+            .price{
+                font-size: 22px;
+                font-weight: 700;
+                color: $colorOrange;
+    
+                del{
+                    padding-left: 10px;
+                    font-size: 14px;
+                    font-weight: 300;
+                    color: $secondaryColor;
+                }
+            }
+        }
+        
+        .bottom{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+           
+
+            .product-event-items{
+                display: flex;
+                
+                .btn{
+                   margin-right: 10px;
+                   @include breakpoint(small){
+                        margin-right: 20px;
+                   }
+                   @include breakpoint(medium){
+                        margin-right: 10px;
+                   }
+                   @include breakpoint(large){
+                        margin-right: 20px;
+                   }
+                   @include breakpoint(xlarge){
+                        margin-right: 10px;
+                   }
+                   @include breakpoint(xxlarge){
+                        margin-right: 20px;
+                   }
+                   &:last-child{margin-right: 0;}
+                }
+                .cart-btn{
+                    font-size: 16px;
+                    font-weight: 700;
+                    color: #264653;
+                    border: 2px solid #264653;
+                    padding: 4.5px 8.5px;
+                    border-radius: 30px;
+                    text-transform: capitalize;
+                    @include breakpoint(small){
+                        padding: 4.5px 12.5px;
+                    }
+                    &:hover{
+                        color: $white;
+                        border-color: $colorAqua;
+                        background: $colorAqua;
+                    }
+                }
+                .wishlist-btn{
+                    border: 2px solid #E9C46A;
+                    border-radius: 50%;
+                    color: $colorOrange;
+                    width: 38px;
+                    height: 38px;
+                    line-height: 40px;
+                    text-align: center;
+                    padding: 0;
+                   .material-icons{font-size: 20px; }
+                    &:hover{
+                        background: #E9C46A;
+                        color: $white;
+                    }
+                }
+
+            }
+        
+        }
+    }
+}

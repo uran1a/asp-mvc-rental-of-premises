@@ -1,0 +1,37 @@
+/*Shipping Section Style - 2*/
+.shipping-single-item--style-2{
+    
+    .icon{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 90px;
+        height: 90px;
+        background: #E6FFF5;
+        border-radius: 5px;
+        margin-bottom: 25px;
+    }
+    .content{
+        // @include breakpoint(medium){
+        //     margin-top: 0;
+        // }
+        // text-align: center;
+        // @include breakpoint(large){
+        //     text-align: left;
+        // }
+
+        .title{
+            font-size: 22px;
+            font-weight: 700;
+            line-height: 1.6;
+            margin-bottom: 10px;
+            @include breakpoint(medium){
+                margin-bottom: 15px;
+            }
+        }
+
+        p{
+            color: $secondaryColor;
+        }
+    }
+}

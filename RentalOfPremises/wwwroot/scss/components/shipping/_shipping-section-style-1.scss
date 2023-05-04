@@ -1,0 +1,79 @@
+/*Shipping Section - Style - 1*/
+.shipping-list-items--style-1{
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-gap: 40px 160px;
+    justify-items: center;
+    @include breakpoint(medium){
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 40px 43px;
+        justify-items: center;
+    }
+    @include breakpoint(large){
+        grid-template-columns: repeat(3, 1fr);
+        grid-gap: 40px 50px;
+    }
+    @include breakpoint(xlarge){
+        // grid-template-columns: repeat(3, 1fr);
+        // grid-gap: 40px 50px;
+    }
+    @include breakpoint(xxlarge){
+        // grid-gap: 40px 50px;
+    }
+    @include breakpoint(xxxlarge){
+        // grid-gap: 40px 50px;
+    }
+}
+
+/*Shipping Section Style - 1*/
+.shipping-single-item--style-1{
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    @include breakpoint(small){
+        flex-direction: row;
+    }
+    &:last-child{
+        margin-right: 0;
+    }
+    .icon{
+        background: #A8DADC;
+        width: 90px;
+        height: 90px;
+        border-radius: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .content{
+        text-align: left;
+        width: calc(100% - 115px);
+        margin-top: -9px;
+        margin-left: 25px;
+        @include breakpoint(small){
+            text-align: left;
+            width: calc(100% - 115px);
+            margin-top: -9px;
+            margin-left: 25px;
+        }
+        .title{
+            font-size: 22px;
+            @include breakpoint(small){
+                font-size: 24px;
+            }
+            font-weight: 700;
+            line-height: 1.45;
+        }
+
+        p{
+            font-size: 16px;
+            @include breakpoint(large){
+                width: auto;
+            }
+            @include breakpoint(xxxlarge){
+                font-size: 18px;
+            }
+        }
+    }
+}

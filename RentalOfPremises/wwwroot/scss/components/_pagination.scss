@@ -1,0 +1,69 @@
+/***********************************
+* Components - Pagination
+*************************************/
+
+.page-pagination{
+    display: flex;
+    flex-wrap: flex;
+    margin-top: 60px;
+    color: $bodyColor;
+    background: $white;
+    box-shadow: 5px  10px 16px rgba($black, .1) !important;
+    padding: 18px 60px;
+    border-radius: 30px;
+    align-items: center;
+    border: 1px solid #DEDEDE;
+    font-size: 16px;
+    font-weight: 700;
+    position: relative;
+    
+
+    li{
+        margin-left: 7.5px;
+        margin-right: 7.5px;
+    }
+
+    a{
+        color: $bodyColor;
+        &:hover{
+            color: $secondaryColor;
+        }
+    }
+}
+
+.icon-direction {
+    position: absolute;
+    top: 55%;
+    transform: translateY(-50%);
+    color: $bodyColor;
+    &--prev{
+        left: 10px;
+    }
+    &--next{
+        right: 10px;
+    }
+    a:hover{
+        color: $colorOrange;
+    }
+}
+
+.icon-direction.icon-direction--prev::after {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 1px;
+    background: #DEDEDE;
+    top: 50%;
+    left: calc(100% + 6px);
+    transform: translateY(-50%);
+}
+.icon-direction.icon-direction--next::after {
+    position: absolute;
+    content: "";
+    height: 30px;
+    width: 1px;
+    background: #DEDEDE;
+    top: 50%;
+    right: calc(100% + 6px);
+    transform: translateY(-50%);
+}

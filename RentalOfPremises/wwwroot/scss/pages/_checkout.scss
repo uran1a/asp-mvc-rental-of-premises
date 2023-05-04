@@ -1,0 +1,141 @@
+/*****************************
+* Pages - Checkout
+*****************************/
+
+.user-actions {
+    margin-bottom: 20px;
+    h3 {
+        font-size: 13px;
+        font-weight: 400;
+        background-color: #f7f6f7;
+        padding: 15px 10px;
+        border-top: 3px solid $secondaryColor;
+        margin-bottom: 0;
+    }
+
+    h3 a {
+        color: $secondaryColor;
+    }
+}
+.checkout_info {
+    border: 1px solid $borderColor;
+    margin-top: 25px;
+    padding: 20px 30px;
+    p {
+        margin-bottom: 15px;
+        font-size: 14px;
+    }
+}
+
+.form_group {
+    margin-bottom: 20px;
+    input[type="text"],
+    input[type="password"] {
+        width: 350px !important;
+    }
+    .btn {
+        margin-right: 20px;
+    }
+}
+
+.form_group.group_3 {
+    display: flex;
+    align-items: center;
+}
+
+.checkout_form {
+    h3 {
+        font-size: 16px;
+        line-height: 30px;
+        padding: 5px 10px;
+        text-transform: uppercase;
+        color: $white;
+        background: $headingColor;
+        font-weight: 500;
+        margin-bottom: 25px;
+    }
+    
+}
+
+.checkout_coupon input[type="text"] {
+    background: none;
+    border: 1px solid $borderColor;
+    width: 200px;
+    height: 45px;
+    font-size: 12px;
+    padding: 0 20px;
+    color: $bodyColor;
+}
+
+.checkout_coupon .btn {
+    margin-left: 20px;
+}
+
+.country_option{
+    width: 100%;
+    margin-bottom: 20px;
+    .list {
+        height: 150px;
+        overflow-y: scroll;
+    }
+}
+
+.order-notes{
+    margin-bottom: 53px;
+    @include breakpoint(medium){
+        margin-bottom: 0;
+    }
+    label {
+        margin-bottom: 10px;
+        font-weight: 700;
+    }
+    textarea {
+        border: 1px solid $borderColor;
+        border-radius: 0;
+        height: 100px;
+        max-width: 100%;
+        padding: 20px 20px;
+        background: none;
+        font-size: 13px;
+        resize: none;
+        line-height: 1.6;
+        width: 100%;
+        color: $bodyColor;
+        outline: none;
+    }
+    
+}
+
+
+.order_table {
+    margin-bottom: 35px;
+    border: 1px solid #ddd;
+    table thead tr th {
+        min-width: 50%;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid #ddd;
+    }
+    table tbody tr td {
+        min-width: 50%;
+        text-align: left;
+        padding: 15px 30px;
+        border-bottom: 1px solid #ddd;
+    }
+
+    table tfoot tr {
+        th {
+            min-width: 50%;
+            text-align: left;
+            padding: 15px 30px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        td {
+            min-width: 50%;
+            text-align: left;
+            padding: 15px 30px;
+            border-bottom: 1px solid #ddd;
+        }
+    }
+}

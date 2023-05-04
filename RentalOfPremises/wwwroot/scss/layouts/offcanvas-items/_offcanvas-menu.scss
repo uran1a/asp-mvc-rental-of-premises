@@ -1,0 +1,118 @@
+/*****************************
+* Layout - Offcanvas Menu
+*****************************/
+/*Mobile Menu Bottom Area*/
+.mobile-search{
+    display: block;
+    .search-event{
+        margin-left: 0;
+        &::before{
+            display: none;
+        }
+
+        .header-search{
+            padding: 0 15px 0 0;
+        }
+    }
+
+    
+}
+
+.offcanvas-menu {
+    margin: 20px 0;
+    font-size: 16px;
+}
+
+.offcanvas-menu li {
+    position: relative;
+    padding: 7px 5px;
+}
+
+.offcanvas-menu>ul>li {
+    border-bottom: 1px solid transparent;
+}
+
+.offcanvas-menu>ul>li:last-child {
+    border-bottom: none;
+}
+
+.offcanvas-menu li a {
+    display: block;
+    color: $headingColor;
+    font-weight: 700;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.offcanvas-menu li a:hover {
+    color: $themeColor;
+}
+
+.offcanvas-menu li .mobile-sub-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.offcanvas-menu-expand::after {
+    content: "\e5df";
+    position: absolute;
+    font-family: 'Material Icons';
+    top: 0;
+    right: 0;
+    transition: all 0.3s ease;
+    color: $headingColor;
+    font-size: 24px;
+    line-height: 1.8;
+    cursor: pointer;
+}
+
+.offcanvas-menu .active>.offcanvas-menu-expand:last-child,
+.sub-menu>.active .offcanvas-menu-expand:last-child {
+    border-bottom: none;
+}
+
+.offcanvas-menu .active>.offcanvas-menu-expand::after,
+.sub-menu>.active .offcanvas-menu-expand::after {
+    transform: rotate(90deg);
+    color: $colorOrange;
+
+}
+
+
+.mobile-contact-info{
+  display: flex;
+  justify-content: center;
+  .social-link{
+      display: flex;
+      li{
+        margin-right: 20px;
+        &:last-child{margin-right: 0}
+      }
+      a{
+          width: 40px;
+          height: 40px;
+          line-height: 35px;
+          text-align: center;
+          background: $secondaryColor;
+          border: 2px solid $secondaryColor;
+          border-radius: 50%;
+          display: inline-block;;
+          transition: $baseTransition;
+            img{
+                filter: brightness(0) invert(1);
+            }
+          @include breakpoint(xxlarge){
+              width: 55px;
+              height: 55px;
+              line-height: 55px;
+              margin-right: 25px;
+          }
+          &:hover{
+              background: $white;
+              img{
+                filter: brightness(1) invert(0);
+              }
+          }
+      }
+  }
+}

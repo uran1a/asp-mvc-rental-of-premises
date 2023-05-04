@@ -1,0 +1,61 @@
+/*************************************
+* Components - Product Section
+**************************************/
+
+/*Product Tabs*/
+.product-tab{
+    margin-bottom: 20px;
+    @include breakpoint(large){
+        margin-bottom: 30px;
+    }
+    .nav-item{
+        margin-right: 15px;
+        margin-bottom: 13px;
+        @include breakpoint(xlarge){
+            margin-right: 40px;
+        }
+        &:last-child{margin-right: 0;}
+    }
+    .nav-link{
+        border: 2px solid #A8DADC;
+        color: $secondaryColor;
+        font-size: 15px;
+        font-weight: 700;
+        border-radius: 30px;
+        display: flex;
+        align-items: center;
+        padding: 8px 15px;
+        text-transform: uppercase;
+        @include breakpoint(medium){
+            padding: 10px 20px;
+        }
+        @include breakpoint(xlarge){
+            font-size: 16px;
+            padding: 13px 30px;
+        }
+        img{
+            margin-left: 20px;
+            @include breakpoint(xlarge){
+                margin-left: 34px;
+            }
+        }
+
+        &.active{
+            background: $themeColor;
+            border-color: $themeColor;
+            color: $white;
+
+            img{
+                filter: brightness(0) invert(1);;
+            }
+        }
+    }
+}
+
+.product-slider{
+    position: relative
+}
+
+@import "products/product-style-one";
+@import "products/product-style-two";
+

@@ -1,0 +1,81 @@
+.top-slider-buttons {
+    margin-top: 20px;
+    @include breakpoint(small){
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+    .slider-buttons{
+        display: flex;
+    }
+    .slider-button{
+        margin-right: 20px;
+        &:last-child{
+            margin-right: 0;
+        }
+    }
+}
+
+.center-slider-nav{
+    .slider-button{
+        transition: $baseTransition;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 9;
+        visibility: hidden;
+        opacity: 0;
+    }
+
+    .button-prev{
+        left: 40px;
+        @include breakpoint(xlarge){
+            left: 0px;
+        }
+    }
+    .button-next{
+        right:40px;
+        @include breakpoint(xlarge){
+            right: 0px;
+        }
+    }
+
+   &:hover .slider-button{
+        visibility: visible;
+        opacity: 1;
+
+        &.button-prev{
+            left: 0px;
+            @include breakpoint(xlarge){
+                left: -40px;
+            }
+        }
+        &.button-next{
+            right: 0px;
+            @include breakpoint(xlarge){
+                right: -40px;
+            }
+        }
+    }
+}
+
+
+
+.slider-button{
+    width: 40px;
+    height: 40px;
+    border-radius: 5px;
+    border: 1px solid $themeColor;
+    text-align: center;
+    line-height: 40px;
+    color: $themeColor;
+    background: $white;
+    font-size: 25px;
+    // position: relative;
+    // z-index: 1;
+    transition: $baseTransition;
+    &:hover{
+        color: $white;
+        background: $themeColor;
+    }
+}
+

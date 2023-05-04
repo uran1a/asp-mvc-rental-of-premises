@@ -1,0 +1,14 @@
+.widget-catagory{
+    a{
+        padding: 15px 15px;
+        color: $bodyColor;
+        font-size: 14px;
+        font-weight: 700;
+        display: block;
+        border-top: 1px solid #DBDBDB;
+
+        &:hover{
+            color: $secondaryColor;
+        }
+    }
+}

@@ -1,0 +1,114 @@
+/*Product Style - 2*/
+.product-single-item-style-2 {
+    border: 1px solid #EAE9EE;
+    border-radius: 30px;
+    padding: 30px;
+    .image{
+        position: relative;
+        display: block;
+        border-radius: 30px;
+        margin-bottom: 25px;
+        img{
+            border-radius: 30px;
+        }
+
+        .tooltip-tag-items{
+            position: absolute;
+            top: 0;
+            left: 0;
+            li{
+                color: $white;
+                font-size: 12px;
+                font-weight: bold;
+                text-align: center;
+                line-height: 36px;
+                width: 36px;
+                height: 36px;
+                border-radius: 50%;
+            }
+            .color-green{
+                background: #2A9D8F;
+            }
+            .color-yellow{
+                background: #F4A261;
+            }
+        }
+
+        .event-btn{
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            color: $colorOrange;
+            border: 2px solid #E9C46A;
+            display: inline-block;
+            &:hover{
+                background: #E9C46A;
+                color: $white;
+               }
+            .material-icons{
+                line-height: 35px;
+            }
+         }
+    }
+
+    .content{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        .top{
+            .catagory{
+                font-size: 14px;
+                font-weight: 700;
+                margin-bottom: 8px;
+                display: inline-block;
+            }
+            
+            .title a{
+                display: inline-block;
+                font-size: 22px;
+                font-weight: 700;
+                transition: $baseTransition;
+                
+                &:hover{
+                    color: #2A9D8F;
+                }
+            }
+    
+            .price{
+                font-size: 22px;
+                font-weight: 700;
+                color: $colorOrange;
+    
+                del{
+                    padding-left: 10px;
+                    font-size: 14px;
+                    font-weight: 300;
+                    color: $secondaryColor;
+                }
+            }
+        }
+         .bottom{
+             .event-btn{
+                border: 2px solid $themeColor;
+                color: $themeColor;
+                &:hover{
+                    background: $themeColor;
+                    color: $white;
+                }
+             }
+         }
+    }
+
+    .event-btn{
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: inline-block;
+        text-align: center;
+        
+        .material-icons{
+             font-size: 20px;
+             line-height: 36px;
+         }
+     }
+}

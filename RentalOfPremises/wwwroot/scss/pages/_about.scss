@@ -1,0 +1,71 @@
+/*************************************
+* Pages - About
+**************************************/
+
+.about-hero-image{
+    margin-top: 60px;
+    position: relative;
+    @include breakpoint(medium){
+        margin-top: 80px;
+    }
+    @include breakpoint(large){
+        margin-top: 100px;
+    }
+    @include breakpoint(xlarge){
+        margin-top: -295px;
+    }
+    img{
+        border-radius: 50px;
+    }
+}
+.about-section{
+    .section-content{
+        margin-bottom: 20px;
+        .section-title-stylish{
+            font-weight: 300;
+            font-size: 28px;
+            font-weight: 300;
+            line-height: 1.43;
+            margin-bottom: 20px;
+            @include breakpoint(small){
+                font-size: 36px;
+            }
+            @include breakpoint(medium){
+                font-size: 46px;
+            }
+            @include breakpoint(xlarge){
+                font-size: 45px;
+            }
+            @include breakpoint(xxlarge){
+                font-size: 60px;
+            }
+            @include breakpoint(xxxlarge){
+                font-size: 70px;
+            }
+            span{
+                font-weight: 400;
+            }
+        }
+
+        p{
+            color: $headingColor;
+        }
+    }
+
+    .video-link{
+        display: flex;
+        align-items: center;
+        margin-top: 35px;
+        margin-bottom: 35px;
+        @include breakpoint(large){
+            justify-content: flex-start;
+            margin-top: 55px;
+            margin-bottom: 0;
+        }
+        .video-text{
+            padding-right: 30px;
+            font-weight: 700;
+            font-family: 14px;
+        }
+    }
+}
