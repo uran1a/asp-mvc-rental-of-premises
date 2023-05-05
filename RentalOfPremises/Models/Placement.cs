@@ -14,6 +14,6 @@ namespace RentalOfPremises.Models
         public DateTime Date_Of_Construction { get; set; }
         public long Preriew_Image_Id { get; set; }
         public int PhysicalEntityId { get; set; }
-        public PhysicalEntity Owner { get; set; } = null!;
+        public PhysicalEntity PhysicalEntity { get; set; } = null!;
     }
 }

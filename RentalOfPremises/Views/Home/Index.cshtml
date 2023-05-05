@@ -1,9 +1,67 @@
-﻿@{
-    ViewData["Title"] = "Home Page";
+﻿@model IEnumerable<RentalOfPremises.Models.Placement>
+@{
+
+ViewData["Title"] = "Home Page";
+
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <a asp-action="Logout" asp-controller="Account">Выход</a>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<!-- ...:::: Start Shop List Section:::... -->
+<div class="shop-list-section section-fluid-270 section-top-gap-100">
+    <div class="box-wrapper">
+        <div class="shop-list-wrapper">
+            <div class="container-fluid">
+                <div class="row flex-column-reverse flex-lg-row-reverse">
+                    <!-- Start Sidebar Area -->
+                    @await Html.PartialAsync("SidebarPartial")
+                    <!-- End Sidebar Area -->
+                    <div class="col-xl-8 col-lg-9">
+                        <div class="product-shop-list-items">
+                            <div class="row mb-n25">
+                                @foreach(var item in Model)
+                                {
+                                    <div class="col-md-6 col-12 mb-25">
+                                        <div class="product-single-item-style-1">
+                                            <a class="image img-responsive" asp-action="Info" asp-controller="Placement" asp-route-id="@item.PhysicalEntityId">
+                                                <img class="img-fluid" src="~/images/products/default/product-default-style-1-img-1.webp" alt="">
+                                            </a>
+                                            <div class="content">
+                                                <div class="top">
+                                                    <span class="catagory">г. @item.City</span><br/>
+                                                    <h4 class="title"><a href="product-details-default.html">ул. @item.Street, @item.House</a></h4>
+                                                    <span class="price">$355.00 <del>$400.00</del></span>
+                                                </div>
+                                                <div class="bottom">
+                                                    <div class="product-event-items">
+                                                        <a href="cart.html" class="btn cart-btn">Add to cart</a>
+                                                        <a href="wishlist.html" class="btn wishlist-btn"><span class="material-icons">favorite_border</span></a>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                        <!-- End Product Single Item - Style 1 -->
+                                    </div>
+                                }
+                            <div>
+                        </div>
+
+                        <!-- Start Pagination -->
+                        <div class="d-flex justify-content-center">
+                            <ul class="page-pagination">
+                                <li class="icon-direction icon-direction--prev"><a href="#"><span class="material-icons-outlined">arrow_left</span></a></li>
+                                <li><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li>...</li>
+                                <li><a href="#">10</a></li>
+                                <li class="icon-direction icon-direction--next"><a href="#"><span class="material-icons-outlined">arrow_right</span></a></li>
+                            </ul>
+                        </div>
+                        <!-- End Pagination -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> <!-- ...:::: End Shop List Section:::... -->

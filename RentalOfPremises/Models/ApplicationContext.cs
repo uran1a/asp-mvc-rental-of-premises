@@ -20,7 +20,7 @@ namespace RentalOfPremises.Models
                 .HasForeignKey<PhysicalEntity>(pe => pe.UserId);
 
             modelBuilder.Entity<Placement>()
-                .HasOne(p => p.Owner)
+                .HasOne(p => p.PhysicalEntity)
                 .WithMany(pe => pe.Placements)
                 .HasForeignKey(p => p.PhysicalEntityId);
 
