@@ -7,20 +7,21 @@ using System.Diagnostics;
 namespace RentalOfPremises.Controllers
 {
     [Authorize]
-    public class PlacementController : Controller
+    public class ProfileController : Controller
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationContext _db;
 
-        public PlacementController(ApplicationContext context, ILogger<HomeController> logger)
+        public ProfileController(ApplicationContext context, ILogger<HomeController> logger)
         {
             _db = context;
             _logger = logger;
         }
-        public async Task<IActionResult> Info(int id)
+        public async Task<IActionResult> Index()
         {
-            Console.WriteLine("Id placement: " + id);
-            return  View(await _db.Placements.Include(p => p.PhysicalEntity).Where(p => p.Id == id).SingleOrDefaultAsync());
+            Console.WriteLine("Id user: " + User.Identity!.Name);
+            return View(await _db.Users.Include(p => p.PhysicalEntity).Where(p => p.Id == int.Parse(User.Identity.Name!)).SingleOrDefaultAsync());
         }
     }
 }
+

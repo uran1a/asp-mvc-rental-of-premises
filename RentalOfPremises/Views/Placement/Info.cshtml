@@ -1,4 +1,5 @@
-﻿@*
+﻿@model RentalOfPremises.Models.Placement
+@*
 For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
@@ -68,77 +69,21 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                     <div class="col-xxl-4 col-lg-6">
                         <!-- Start Product Content -->
                         <div class="product-content">
-                            <span class="catagory">Women</span>
-                            <h2 class="title">Stylish women court gray 2DX m</h2>
-                            <span class="author">Design: kakakoli Fashion</span>
-                            <div class="bottom">
-                                <ul class="review-star">
-                                    <li class="fill"><span class="material-icons">star</span></li>
-                                    <li class="fill"><span class="material-icons">star</span></li>
-                                    <li class="fill"><span class="material-icons">star</span></li>
-                                    <li class="fill"><span class="material-icons">star</span></li>
-                                    <li class="fill"><span class="material-icons">star_half</span></li>
-                                </ul>
-
-                                <a href="wishlist.html" class="wishlist">Add Wishlist</a>
-                            </div>
+                            <span class="catagory">г. @Model.City</span>
+                            <h2 class="title">ул. @Model.Street, @Model.House</h2>
+                            <span class="author">р-н @Model.Area</span>
+                            
 
                             <span class="price">$550.00 <del>$650.00</del></span>
 
                             <div class="product-variables">
-                                <!-- Start Product Single Variable -->
-                                <div class="product-variable-color">
-                                    <h6 class="title">Color</h6>
-                                    <ul class="color-select">
-                                        <li>
-                                            <label class="checkbox-default" for="color-red">
-                                                <input type="checkbox" id="color-red">
-                                                <span>Red</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-default" for="color-green">
-                                                <input type="checkbox" id="color-green">
-                                                <span>Green</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-default" for="color-blue">
-                                                <input type="checkbox" id="color-blue">
-                                                <span>Blue</span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-default" for="color-black">
-                                                <input type="checkbox" id="color-black">
-                                                <span>Black</span>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- End Product Single Variable -->
-
                                 <ul class="variable-items">
-                                    <li class="variable-single-items type-select">
-                                        <select>
-                                            <option value="S">Size: S</option>
-                                            <option value="M">Size: M</option>
-                                            <option value="L">Size: L</option>
-                                            <option value="XL" selected>Size: XL</option>
-                                            <option value="XXl">Size: XXL</option>
-                                        </select>
+                                    <li class="variable-single-items">
+                                        <h3>Владелец: <a>@Model.PhysicalEntity.Surname @Model.PhysicalEntity.Name @Model.PhysicalEntity.Patronymic</a></h3>
+                                        <h3>Мобильный телефон: @Model.PhysicalEntity.Mobile_Phone</h3>
                                     </li>
                                     <li class="variable-single-items">
-                                        <div class="num-block skin-2">
-                                            <div class="num-in">
-                                                <span class="minus dis"></span>
-                                                <input type="text" class="in-num" value="1" readonly="">
-                                                <span class="plus"></span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                    <li class="variable-single-items">
-                                        <a href="cart.html" class="btn btn-sm btn-default">Add To Cart</a>
+                                        <a href="cart.html" class="btn btn-sm btn-default">Арендовать</a>
                                     </li>
                                 </ul>
                             </div>
