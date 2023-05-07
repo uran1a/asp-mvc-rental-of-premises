@@ -1,0 +1,72 @@
+﻿@model RentalOfPremises.Models.PhysicalEntity
+@{
+    string day = @Model.Data_Of_Birth.Date.Day.ToString();
+    int month = @Model.Data_Of_Birth.Date.Month;
+    string year = @Model.Data_Of_Birth.Date.Year.ToString();
+    string monthNewFormat = (month > 10) ? month.ToString() : "0"+month.ToString();
+    string birthday = year + "-" + monthNewFormat + "-" + day;
+}
+<h3>Персональные данные</h3>
+<div class="login">
+    <div class="login_form_container">
+        <div class="account_login_form">
+            <form asp-action="Update" asp-controller="Profile" asp-route-id="@Model.Id" asp-anti-forgery="true">
+                @*<div class="validation" asp-validation-summary="ModelOnly"></div>*@
+                @*<div class="default-form-box mb-15">
+                    <label for="login">Логин <span>*</span></label>
+                    <input type="text" name="Login" value="@ViewBag.PhysicalEntity.User.Login" />
+                    <span validation-for="login" />                      
+                </div>
+                <div class="default-form-box mb-20">
+                    <label for="password">Пароль <span>*</span></label>
+                    <input type="password" name="Password" value="@ViewBag.PhysicalEntity.User.Password"/>
+                    <span validation-for="password" />
+                </div>*@
+                <div class="default-form-box mb-20">
+                    <label asp-for="Name">Имя <span>*</span></label>
+                    <input type="text" asp-for="Name" value="@Model.Name"/>
+                    <span asp-validation-for="Name" />
+                </div>
+                <div class="default-form-box mb-20">
+                    <label asp-for="Surname">Фамилия <span>*</span></label>
+                    <input type="text" asp-for="Surname" value="@Model.Surname"/>
+                    <span asp-validation-for="Surname" />
+                </div>
+                <div class="default-form-box mb-20">
+                    <label asp-for="Patronymic">Отчество</label><br />
+                    <input type="text" asp-for="Patronymic" value="@Model.Patronymic"/>
+                    <span asp-validation-for="Patronymic" />
+                </div>
+                <div class="default-form-box mb-20">
+                    <label asp-for="Data_Of_Birth">Дата рождения <span>*</span></label><br />
+                    <input type="date" asp-for="Data_Of_Birth" value="@birthday"/>
+                    <span asp-validation-for="Data_Of_Birth" />
+                </div>
+                <div class="default-form-box mb-20">
+                    <label asp-for="Mobile_Phone">Моб. телефон</label><br />
+                    <input type="text" asp-for="Mobile_Phone" value="@Model.Mobile_Phone" />
+                    <span asp-validation-for="Mobile_Phone" />
+                </div>
+                <div class="default-form-box mb-20">
+                    <label asp-for="Email">Электронная почта</label><br />
+                    <input type="text" asp-for="Email" value="@Model.Email"/>
+                    <span asp-validation-for="Email" />
+                </div>
+                <div class="default-form-box mb-20">
+                    <label asp-for="Passport_Serial">Серия паспорта <span>*</span></label><br />
+                    <input type="number" asp-for="Passport_Serial" value="@Model.Passport_Serial"/>
+                    <span asp-validation-for="Passport_Serial" />
+                </div>
+                <div class="default-form-box mb-20">
+                    <label asp-for="Passport_Code">Код паспорта <span>*</span></label><br />
+                    <input type="number" asp-for="Passport_Code" value="@Model.Passport_Code"/>
+                    <span asp-validation-for="Passport_Code" />
+                </div>
+                <br>
+                <div class="save_button mt-3">
+                    <button class="btn btn-sm btn-default-outline" type="submit">Сохранить</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

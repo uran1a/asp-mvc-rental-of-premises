@@ -11,7 +11,6 @@ namespace RentalOfPremises.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationContext _db;
-
         public ProfileController(ApplicationContext context, ILogger<HomeController> logger)
         {
             _db = context;
@@ -20,7 +19,26 @@ namespace RentalOfPremises.Controllers
         public async Task<IActionResult> Index()
         {
             Console.WriteLine("Id user: " + User.Identity!.Name);
-            return View(await _db.Users.Include(p => p.PhysicalEntity).Where(p => p.Id == int.Parse(User.Identity.Name!)).SingleOrDefaultAsync());
+            var currPhysicalEntity = await _db.PhysicalEntities
+                            .Where(p => p.Id == int.Parse(User.Identity.Name!))
+                            .SingleOrDefaultAsync();
+            if(currPhysicalEntity != null)
+                ViewBag.PhysicalEntity = currPhysicalEntity;
+            return View();
+        }
+        public async Task<IActionResult> Update(PhysicalEntity currPhysicalEntity)
+        {
+            if(currPhysicalEntity == null) return RedirectToAction("Index");
+            var physicalEntity = await _db.PhysicalEntities
+                            .Where(p => p.Id == int.Parse(User.Identity!.Name!))
+                            .SingleOrDefaultAsync();
+            if(physicalEntity != null)
+            {
+                if (!physicalEntity.Name.Equals(currPhysicalEntity!.Name))
+                    physicalEntity.Name = currPhysicalEntity.Name;
+                await _db.SaveChangesAsync();
+            }
+            return RedirectToAction("Index");
         }
     }
 }
