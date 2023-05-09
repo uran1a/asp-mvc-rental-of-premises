@@ -797,7 +797,6 @@ input, textarea {
   font-size: 16px;
   margin-bottom: 10px;
   display: block;
-  text-transform: capitalize;
 }
 
 .default-form-box label span {

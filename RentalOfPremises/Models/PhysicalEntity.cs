@@ -16,5 +16,7 @@ namespace RentalOfPremises.Models
         public int UserId { get; set; }
         public User User { get; set; } = null!;
         public List<Placement> Placements { get; set; } = new();
+        public List<Deal> RentalDeals { get; set; } = new();
+        public List<Deal> OwnerDeals { get; set; } = new();
     }
 }

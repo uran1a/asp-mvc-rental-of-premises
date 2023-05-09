@@ -1,0 +1,47 @@
+﻿@model RentalOfPremises.Models.Deal
+<div class="customer-login section-fluid-270 section-top-gap-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="account_form register">
+                    <h2>Условия аренды</h2>
+                    <form asp-action="AddApplication" asp-controller="Placement" asp-anti-forgery="true">
+                        <div class="validation" asp-validation-summary="ModelOnly"></div>
+                        <div>
+                            <input type="hidden" asp-for="RenterId" value="@Model.RenterId" />
+                            <input type="hidden" asp-for="OwnerId" value="@Model.OwnerId" />
+                            <input type="hidden" asp-for="PlacementId" value="@Model.PlacementId" />
+                            <div class="default-form-box">
+                                <label asp-for="StartDateRental">Период аренды <span>*</span></label><br />
+                                <label asp-for="StartDateRental">C </label> 
+                                <input type="date" asp-for="StartDateRental" />
+                                <label asp-for="EndDateRental"> До </label>
+                                <input type="date" asp-for="EndDateRental" />
+                                <span asp-validation-for="EndDateRental" />
+
+                                @*<label >Период аренды <span>*</span></label><br />
+                                <label >C </label><input type="date" style="width: 30%" />
+                                <label > До </label>
+                                <input type="date" style="width: 30%" />
+                                <span  />*@
+                            </div>
+                            <div class="default-form-box">
+                                <label asp-for="TypeOfActivity">Какой деятельностью вы планируете заниматься в помещении?</label><br />
+                                <textarea rows="10" cols="45" asp-for="TypeOfActivity"></textarea>
+                                <span asp-validation-for="TypeOfActivity" />
+                            </div>
+                            <div class="default-form-box">
+                                <label asp-for="Repairs">Вы собираетесь проводить какие-либо ремонтные работы в помещении?</label><br />
+                                <textarea rows="10" cols="45" asp-for="Repairs"></textarea>
+                                <span asp-validation-for="Repairs" />
+                            </div>
+                            <div class="login_submit">
+                                <button class="btn btn-sm btn-radius btn-default mb-4" type="submit">Отправить арендодателю</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

@@ -83,7 +83,7 @@ For more information on enabling MVC for empty projects, visit https://go.micros
                                         <h3>Мобильный телефон: @Model.PhysicalEntity.Mobile_Phone</h3>
                                     </li>
                                     <li class="variable-single-items">
-                                        <a href="cart.html" class="btn btn-sm btn-default">Арендовать</a>
+                                        <a asp-action="Conditions" asp-controller="Placement" asp-route-placementId="@Model.Id" asp-route-ownerId="@Model.PhysicalEntityId" class="btn btn-sm btn-default">Арендовать</a>
                                     </li>
                                 </ul>
                             </div>

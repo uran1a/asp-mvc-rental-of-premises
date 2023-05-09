@@ -22,5 +22,19 @@ namespace RentalOfPremises.Controllers
             Console.WriteLine("Id placement: " + id);
             return  View(await _db.Placements.Include(p => p.PhysicalEntity).Where(p => p.Id == id).SingleOrDefaultAsync());
         }
+        public IActionResult Conditions(int placementId, int ownerId)
+        {
+            Console.WriteLine(placementId + " " + ownerId);
+            if(User.Identity!.Name != null)
+                return View(new Deal { PlacementId = placementId, OwnerId = ownerId, RenterId = int.Parse(User.Identity!.Name)});
+            return View(new Deal());
+        }
+        [HttpPost]
+        public async void AddApplication(Deal deal)
+        {
+            Console.WriteLine("Ура)");
+            await _db.Deals.AddAsync(deal);
+            _db.SaveChanges();
+        }
     }
 }
