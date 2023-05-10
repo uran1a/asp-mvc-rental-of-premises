@@ -30,11 +30,11 @@ namespace RentalOfPremises.Controllers
             return View(new Deal());
         }
         [HttpPost]
-        public async void AddApplication(Deal deal)
+        public async Task<IActionResult> AddApplication(Deal deal)
         {
-            Console.WriteLine("Ура)");
             await _db.Deals.AddAsync(deal);
             _db.SaveChanges();
+            return Redirect("~/Home/Index");
         }
     }
 }

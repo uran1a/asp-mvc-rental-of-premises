@@ -1,4 +1,9 @@
 ﻿@model RentalOfPremises.Models.Deal
+@{
+    string currentDate = DateTime.Now.ToString("MM-dd-yyyy");
+    string minDateRental = DateTime.Now.AddMonths(1).ToString("MM-dd-yyyy");
+    Console.WriteLine(minDateRental);
+}
 <div class="customer-login section-fluid-270 section-top-gap-100">
     <div class="container-fluid">
         <div class="row">
@@ -12,18 +17,19 @@
                             <input type="hidden" asp-for="OwnerId" value="@Model.OwnerId" />
                             <input type="hidden" asp-for="PlacementId" value="@Model.PlacementId" />
                             <div class="default-form-box">
-                                <label asp-for="StartDateRental">Период аренды <span>*</span></label><br />
+                                <label>Период аренды <span>*</span></label><br />
                                 <label asp-for="StartDateRental">C </label> 
-                                <input type="date" asp-for="StartDateRental" />
+                                <input type="date" asp-for="StartDateRental" value="@currentDate" />
+                                <span asp-validation-for="StartDateRental" />
                                 <label asp-for="EndDateRental"> До </label>
-                                <input type="date" asp-for="EndDateRental" />
+                                <input type="date" asp-for="EndDateRental" value="@minDateRental"/>
                                 <span asp-validation-for="EndDateRental" />
 
-                                @*<label >Период аренды <span>*</span></label><br />
+                               @* <label >Период аренды <span>*</span></label><br />
                                 <label >C </label><input type="date" style="width: 30%" />
                                 <label > До </label>
-                                <input type="date" style="width: 30%" />
-                                <span  />*@
+                                <input type="date" style="width: 30%" />*@
+                                
                             </div>
                             <div class="default-form-box">
                                 <label asp-for="TypeOfActivity">Какой деятельностью вы планируете заниматься в помещении?</label><br />

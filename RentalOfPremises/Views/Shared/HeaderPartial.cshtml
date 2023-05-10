@@ -1,5 +1,5 @@
 ﻿@{
-
+    int userId = int.Parse(User.Identity!.Name!);
 }
 <!-- .....:::::: Start Header Section - Dark Header :::::.... -->
 <header class="header-section pos-absolute dark-bg sticky-header d-none d-lg-block section-fluid-270 bg-primary">
@@ -15,7 +15,14 @@
                 </div>
                 <div class="col-auto">
                     <div class="header-action">
-                         <a asp-action="Index" asp-controller="Profile">Профиль</a>
+                         
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <div class="header-action">
+                        <a asp-action="Message" asp-controller="Home" class="header-action-item header-action-wishlist"><img src="~/images/icons/envelope.png" alt=""><span class="count-tag"> @await Component.InvokeAsync("Message", new { userId = userId})</span></a>
+                        <a asp-action="Index" asp-controller="Profile" class="header-action-item header-action-wishlist"><img src="~/images/icons/user.png" alt=""></a>
+                        <a asp-action="Logout" asp-controller="Account" class="header-action-item header-action-wishlist"><img src="~/images/icons/exit.png" alt=""></a>
                     </div>
                 </div>
             </div>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using RentalOfPremises.Models;
 using System.Diagnostics;
+using RentalOfPremises.ViewModels;
 
 namespace RentalOfPremises.Controllers
 {
@@ -23,6 +24,7 @@ namespace RentalOfPremises.Controllers
                 Console.WriteLine(User.Identity.Name);
             return View(await _db.Placements.Where(p => p.PhysicalEntityId != int.Parse(User.Identity.Name!)).ToListAsync());
         }
+       
         public IActionResult Privacy()
         {
             return View();
