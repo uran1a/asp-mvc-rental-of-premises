@@ -18,13 +18,41 @@ namespace RentalOfPremises.Controllers
             _db = context;
             _logger = logger;
         }
+        
         public async Task<IActionResult> Index()
         {
-            if (User.Identity!.IsAuthenticated) 
-                Console.WriteLine(User.Identity.Name);
-            return View(await _db.Placements.Where(p => p.PhysicalEntityId != int.Parse(User.Identity.Name!)).ToListAsync());
+            return View(await _db.Placements.Where(p => p.PhysicalEntityId != int.Parse(User.Identity!.Name!)).ToListAsync());
         }
-       
+        public async Task<IActionResult> Messages()
+        {
+            var messages = await _db.Deals
+                .Include(d => d.Owner)
+                .Include(d => d.Renter)
+                .Include(d => d.Placement)
+                .Where(d => d.DateOfConclusion == null)
+                .Where(d => d.OwnerId == int.Parse(User.Identity!.Name!)).ToListAsync();
+            return View(messages);
+        }
+        public async Task<IActionResult> ConcludeDeal(int dealId)
+        {
+            Deal? deal = await _db.Deals.FirstOrDefaultAsync(d => d.Id == dealId);
+            if (deal != null)
+            {
+                deal.DateOfConclusion = DateTime.Now;
+                _db.SaveChanges();
+            }
+            return Redirect("~/Home/Messages");
+        }
+        public async Task<IActionResult> DeleteDeal(int dealId)
+        {
+            Deal? deal = await _db.Deals.FirstOrDefaultAsync(d => d.Id == dealId);
+            if (deal != null)
+            {
+                _db.Deals.Remove(deal);
+                _db.SaveChanges();
+            }
+            return Redirect("~/Home/Messages");
+        }
         public IActionResult Privacy()
         {
             return View();
