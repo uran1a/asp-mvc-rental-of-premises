@@ -21,7 +21,10 @@ namespace RentalOfPremises.Controllers
         
         public async Task<IActionResult> Index()
         {
-            return View(await _db.Placements.Where(p => p.PhysicalEntityId != int.Parse(User.Identity!.Name!)).ToListAsync());
+            var placements = await _db.Placements
+                .Include(p => p.Images)
+                .Where(p => p.PhysicalEntityId != int.Parse(User.Identity!.Name!)).ToListAsync();
+            return View(placements);
         }
         public async Task<IActionResult> Messages()
         {

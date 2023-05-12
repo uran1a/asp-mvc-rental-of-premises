@@ -9,9 +9,11 @@ namespace RentalOfPremises.Models
         public DbSet<Placement> Placements { get; set; } = null!;
         public DbSet<Role> Roles { get; set; } = null!;
         public DbSet<Deal> Deals { get; set; } = null!;
+        public DbSet<Image> Images { get; set; } = null!;
         public ApplicationContext(DbContextOptions<ApplicationContext> options)
             : base(options)
         {
+            //Database.EnsureDeleted();
             Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)

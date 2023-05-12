@@ -1,4 +1,4 @@
-﻿@model IEnumerable<RentalOfPremises.Models.Placement>
+﻿@model ICollection<RentalOfPremises.Models.Placement>
 @{
 
     ViewData["Title"] = "Home Page";
@@ -22,7 +22,14 @@
                                     <div class="col-md-6 col-12 mb-25">
                                         <div class="product-single-item-style-1">
                                             <a class="image img-responsive" asp-action="Info" asp-controller="Placement" asp-route-id="@item.Id">
-                                                <img class="img-fluid" src="~/images/products/default/product-default-style-1-img-1.webp" alt="">
+                                                @if(item.Images[0] != null)
+                                                {
+                                                    <img class="img-fluid" style="width:435px; height:350px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(@item.Images[0].Content))" />
+                                                }
+                                                else
+                                                {
+                                                    <img class="img-fluid" src="~/images/products/default/product-default-style-1-img-1.webp" alt="">
+                                                }
                                             </a>
                                             <div class="content">
                                                 <div class="top">
@@ -36,9 +43,7 @@
                                                         <a href="wishlist.html" class="btn wishlist-btn"><span class="material-icons">favorite_border</span></a>
                                                     </div>
                                                 </div>
-
                                             </div>
-
                                         </div>
                                         <!-- End Product Single Item - Style 1 -->
                                     </div>

@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.EntityFrameworkCore;
 using RentalOfPremises.Models;
 using System.Diagnostics;
+using System.Web;
 
 namespace RentalOfPremises.Controllers
 {
@@ -19,11 +20,24 @@ namespace RentalOfPremises.Controllers
         public async Task<IActionResult> Index()
         {
             Console.WriteLine("Id user: " + User.Identity!.Name);
-            var currPhysicalEntity = await _db.PhysicalEntities
+            var physicalEntity = await _db.PhysicalEntities
                             .Where(p => p.Id == int.Parse(User.Identity.Name!))
                             .SingleOrDefaultAsync();
-            if(currPhysicalEntity != null)
-                ViewBag.PhysicalEntity = currPhysicalEntity;
+            if(physicalEntity != null)
+                ViewBag.PhysicalEntity = physicalEntity;
+            var placements = await _db.Placements
+                           .Where(p => p.PhysicalEntityId == int.Parse(User.Identity.Name!))
+                           .ToListAsync();
+            if (placements != null)
+                ViewBag.Placements = placements;
+            var renterPlacements = await _db.Deals
+                            .Include(d => d.Owner)
+                            .Include(d => d.Placement)
+                            .Where(d => d.DateOfConclusion != null)
+                            .Where(d => d.RenterId == int.Parse(User.Identity.Name!))
+                            .ToListAsync();
+            if (placements != null)
+                ViewBag.RenterPlacements = renterPlacements;
             return View();
         }
         public async Task<IActionResult> Update(PhysicalEntity currPhysicalEntity)
@@ -40,6 +54,7 @@ namespace RentalOfPremises.Controllers
             }
             return RedirectToAction("Index");
         }
+        
     }
 }
 
