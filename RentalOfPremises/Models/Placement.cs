@@ -25,7 +25,9 @@ namespace RentalOfPremises.Models
         public int Square { get; set; }
         [Required]
         public int YearConstruction { get; set; }
-        public int Preriew_Image_Id { get; set; }
+        [Required]
+        public int Price { get; set; }
+        public string? Description { get; set; }
         [Required]
         public int PhysicalEntityId { get; set; }
         [Required]

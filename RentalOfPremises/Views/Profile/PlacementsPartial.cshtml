@@ -9,11 +9,14 @@ else
         <table>
             <thead>
                 <tr>
+                    
                     <th>Город</th>
                     <th>Район</th>
                     <th>Улица</th>
                     <th>Дом</th>
-                    <th>Площадь</th>
+                    <th>Арендуется</th>
+                    <th>Страница</th>
+                    <th>Изменение</th>
                     <th>Удаление</th>
                 </tr>
             </thead>
@@ -21,12 +24,21 @@ else
             @foreach(var placement in @Model)
             {   
                 <tr>
-                    <td>@placement.City</td>
-                    <td>@placement.Area</td>
-                    <td>@placement.Street</td>
-                    <td>@placement.House</td>
-                    <td>@placement.Square</td>
-                    <td><a href="#"><img src="~/images/icons/trash_16.png" alt=""></a></td>
+                    <td style="min-width: 0;">@placement.City</td>
+                    <td style="min-width: 0;">@placement.Area</td>
+                    <td style="min-width: 0;">@placement.Street</td>
+                    <td style="min-width: 0;">@placement.House</td>
+                    @if(placement.Deal != null)
+                    {
+                        <td>Да</td>
+                    }
+                    else
+                    {
+                        <td>Нет</td>
+                    }
+                    <td ><a asp-action="Index" asp-controller="Placement" asp-route-id="@placement.Id"><img src="~/images/icons/browser.png" alt=""></a></td>
+                    <td style="min-width: 0;"><a asp-action="Update" asp-controller="Placement" asp-route-id="@placement.Id"><img src="~/images/icons/edit.png" alt=""></a></td>
+                    <td style="min-width: 0;"><a asp-action="Delete" asp-controller="Placement" asp-route-id="@placement.Id"><img src="~/images/icons/trash_16.png" alt=""></a></td>
                 </tr>
             }
             </tbody>
@@ -34,5 +46,5 @@ else
         
     </div>
 }
-<a class="btn btn-sm btn-default-outline m-3" asp-action="Create" asp-controller="Placement">Добавить помещение</a>
+<a class="btn btn-sm btn-default-outline mt-3" asp-action="Create" asp-controller="Placement">Добавить помещение</a>
 

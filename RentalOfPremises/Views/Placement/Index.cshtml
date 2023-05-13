@@ -1,0 +1,177 @@
+﻿@model RentalOfPremises.Models.Placement
+<!-- ...::: Strat Product Gallery Section :::... -->
+<div class="product-gallery-info-section section-fluid-270 section-top-gap-100">
+    <div class="box-wrapper">
+        <div class="product-gallery-info-wrapper">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-xxl-8 col-lg-6">
+                        <!-- Start Product Gallert - Tab Style -->
+                        <div class="product-gallery product-gallery--style-tab">
+                            <div class="row flex-md-row flex-column-reverse">
+                                <div class="col-md-3">
+                                    <!-- Start Product Thumbnail -->
+                                    @if(@Model.Images != null){
+                                        <ul class="product-thumbnail-image nav">
+                                            <li class="nav-item">
+                                                <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#img-1" type="button">
+                                                    <span class="thumb">
+                                                        @if(@Model.Images.Count > 0)
+                                                        {
+                                                            <img class="img-fluid" style="width:205px; height:205px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Images[0].Content))" />
+                                                        }
+                                                        else
+                                                        {
+                                                            <img class="img-fluid" src="~/images/products/product-details/product-thumb-1.webp" alt="">
+                                                        }
+												    </span>
+                                                </button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#img-2" type="button">
+                                                    <span class="thumb">
+                                                        @if(@Model.Images.Count > 1)
+                                                        {
+                                                            <img class="img-fluid" style="width:205px; height:205px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Images[1].Content))" />
+                                                        }
+                                                        else
+                                                        {
+                                                           <img class="img-fluid" src="~/images/products/product-details/product-thumb-2.webp" alt="">
+                                                        }
+												    </span>
+                                                </button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" data-bs-toggle="tab" data-bs-target="#img-3" type="button">
+                                                    <span class="thumb">
+                                                        @if(@Model.Images.Count > 2)
+                                                        {
+                                                            <img class="img-fluid" style="width:205px; height:205px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Images[2].Content))" />
+                                                        }
+                                                        else
+                                                        {
+                                                           <img class="img-fluid" src="~/images/products/product-details/product-thumb-3.webp" alt="">
+                                                        }
+												    </span>
+                                                </button>
+                                            </li>
+                                        </ul>
+                                    }
+                                    <!-- End Product Thumbnail -->
+                                </div>
+                                <div class="col-md-9">
+                                    <!-- Start Product Large Image -->
+                                    @if(@Model.Images != null){
+                                        <div class="product-large-image tab-content">
+                                       
+                                            <div class="tab-pane fade show active" id="img-1" role="tabpanel">
+                                                <div class="image">
+                                                    @if(@Model.Images.Count > 0)
+                                                    {
+                                                        <img class="img-fluid" style="width:665px; height:665px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Images[0].Content))" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-fluid" src="~/images/products/product-details/product-large-1.webp" alt="">
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="img-2" role="tabpanel">
+                                                <div class="image">
+                                                    @if(@Model.Images.Count > 1)
+                                                    {
+                                                        <img class="img-fluid" style="width:665px; height:665px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Images[1].Content))" />
+                                                    }
+                                                    else
+                                                    {
+                                                         <img class="img-fluid" src="~/images/products/product-details/product-large-2.webp" alt="">
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="img-3" role="tabpanel">
+                                                <div class="image">
+                                                     @if(@Model.Images.Count > 2)
+                                                    {
+                                                        <img class="img-fluid" style="width:665px; height:665px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Images[2].Content))" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <img class="img-fluid" src="~/images/products/product-details/product-large-3.webp" alt="">
+                                                    }
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <!-- End Product Large Image -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End Product Gallert - Tab Style -->
+                    </div>
+                    <div class="col-xxl-4 col-lg-6">
+                        <!-- Start Product Content -->
+                        <div class="product-content">
+                            <span class="catagory">г. @Model.City</span>
+                            <h2 class="title">ул. @Model.Street, @Model.House</h2>
+                            <span class="author">р-н @Model.Area</span>
+                            <span class="price">@Model.Price руб/месяц</span>
+                            <div class="product-variables">
+                                @if(@ViewBag.IsOwner == true)
+                                {
+                                    <ul class="variable-items">
+                                        <li class="variable-single-items">
+                                            @if(@Model.Deal != null)
+                                            {
+                                                <h5>Арендуется: Да</h5>
+                                                <h5>Арендатор: @Model.Deal.Renter.Name @Model.Deal.Renter.Surname @Model.Deal.Renter.Patronymic </h5>
+                                                @*<h5>Договор: @Model.Deal.File</h5>*@
+                                                <h5>Договор: file.docx</h5>
+                                            }
+                                            else
+                                            {
+                                                <h5>Арендуется: Нет</h5>
+                                            }
+                                        </li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <ul class="variable-items">
+                                        <li class="variable-single-items">
+                                            <h5>Владелец: <a>@Model.PhysicalEntity.Surname @Model.PhysicalEntity.Name @Model.PhysicalEntity.Patronymic</a></h5>
+                                            <h5>Мобильный телефон: @Model.PhysicalEntity.Mobile_Phone</h5>
+                                        </li>
+                                        <li class="variable-single-items">
+                                            <a asp-action="Conditions" asp-controller="Placement" asp-route-placementId="@Model.Id" asp-route-ownerId="@Model.PhysicalEntityId" class="btn btn-sm btn-default">Арендовать</a>
+                                        </li>
+                                    </ul> 
+                                }
+                            </div>
+                        </div>
+                        <!-- End Product Content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ...::: End Product Gallery Section :::... -->
+
+<!-- ...::: Strat Product Description Section :::... -->
+<div class="product-description-section  section-fluid-270 section-top-gap-100">
+    <div class="box-wrapper">
+        <div class="product-description-wrapper">
+            <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <div class="col-xl-8 col-lg-10">
+                        <div class="product-description-content">
+                            <h6 class="title">Описание</h6>
+                            <p>@Model.Description</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- ...::: End Product Description Section :::... -->

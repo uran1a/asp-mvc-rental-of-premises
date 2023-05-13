@@ -1444,7 +1444,6 @@ table {
   font-weight: 500;
   text-transform: capitalize;
   text-align: center;
-  min-width: 150px;
   font-size: 16px;
 }
 
@@ -1494,9 +1493,6 @@ table {
   border: 1px solid #eee;
 }
 
-.table_page table tbody tr td.product_addcart {
-  min-width: 180px;
-}
 
 .top-slider-buttons {
   margin-top: 20px;
@@ -5003,7 +4999,6 @@ Pages - Contact
 
 .account_form h3 {
   font-size: 28px;
-  text-transform: capitalize;
   font-weight: 700;
   line-height: 22px;
   margin-bottom: 30px;

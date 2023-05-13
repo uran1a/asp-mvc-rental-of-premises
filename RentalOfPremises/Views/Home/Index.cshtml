@@ -21,8 +21,8 @@
                                 {
                                     <div class="col-md-6 col-12 mb-25">
                                         <div class="product-single-item-style-1">
-                                            <a class="image img-responsive" asp-action="Info" asp-controller="Placement" asp-route-id="@item.Id">
-                                                @if(item.Images[0] != null)
+                                            <a class="image img-responsive" asp-action="Index" asp-controller="Placement" asp-route-id="@item.Id">
+                                                @if(item.Images != null && item.Images.Count > 0)
                                                 {
                                                     <img class="img-fluid" style="width:435px; height:350px;" src="data:image/jpeg;base64,@(Convert.ToBase64String(@item.Images[0].Content))" />
                                                 }
@@ -35,17 +35,10 @@
                                                 <div class="top">
                                                     <span class="catagory">г. @item.City</span><br/>
                                                     <h4 class="title"><a href="product-details-default.html">ул. @item.Street, @item.House</a></h4>
-                                                    <span class="price">$355.00 <del>$400.00</del></span>
-                                                </div>
-                                                <div class="bottom">
-                                                    <div class="product-event-items">
-                                                        <a href="cart.html" class="btn cart-btn">Add to cart</a>
-                                                        <a href="wishlist.html" class="btn wishlist-btn"><span class="material-icons">favorite_border</span></a>
-                                                    </div>
+                                                    <span class="price">@item.Price руб./месяц</span>
                                                 </div>
                                             </div>
                                         </div>
-                                        <!-- End Product Single Item - Style 1 -->
                                     </div>
                                 }
                             <div>

@@ -26,6 +26,7 @@ namespace RentalOfPremises.Controllers
             if(physicalEntity != null)
                 ViewBag.PhysicalEntity = physicalEntity;
             var placements = await _db.Placements
+                           .Include(p => p.Deal)
                            .Where(p => p.PhysicalEntityId == int.Parse(User.Identity.Name!))
                            .ToListAsync();
             if (placements != null)
@@ -40,18 +41,21 @@ namespace RentalOfPremises.Controllers
                 ViewBag.RenterPlacements = renterPlacements;
             return View();
         }
-        public async Task<IActionResult> Update(PhysicalEntity currPhysicalEntity)
+        public async Task<IActionResult> Update(PhysicalEntity model)
         {
-            if(currPhysicalEntity == null) return RedirectToAction("Index");
-            var physicalEntity = await _db.PhysicalEntities
+            if (model == null) return RedirectToAction("Index");
+            await _db.PhysicalEntities
                             .Where(p => p.Id == int.Parse(User.Identity!.Name!))
-                            .SingleOrDefaultAsync();
-            if(physicalEntity != null)
-            {
-                if (!physicalEntity.Name.Equals(currPhysicalEntity!.Name))
-                    physicalEntity.Name = currPhysicalEntity.Name;
-                await _db.SaveChangesAsync();
-            }
+                            .ExecuteUpdateAsync(s => s
+                                .SetProperty(p => p.Name, p => model.Name)
+                                .SetProperty(p => p.Surname, p => model.Surname)
+                                //.SetProperty(p => p.Patronymic, u => model.Patronymic == null ? "" : model.Patronymic)
+                                .SetProperty(p => p.Patronymic, p => model.Patronymic)
+                                .SetProperty(p => p.Data_Of_Birth, p => model.Data_Of_Birth)
+                                .SetProperty(p => p.Mobile_Phone, p => model.Mobile_Phone)
+                                .SetProperty(p => p.Email, p => model.Email)
+                                .SetProperty(p => p.Passport_Serial, p => model.Passport_Serial)
+                                .SetProperty(p => p.Passport_Code, p => model.Passport_Code));
             return RedirectToAction("Index");
         }
         

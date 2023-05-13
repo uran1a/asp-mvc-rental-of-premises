@@ -1,0 +1,119 @@
+﻿@model RentalOfPremises.Models.Placement
+<div class="customer-login section-fluid-270 section-top-gap-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-8 mx-auto">
+                <div class="account_form">
+                    <h3>Изменение данных о помещение</h3>
+                    <form asp-action="Update" asp-controller="Placement" method="post" enctype="multipart/form-data">
+                        <input type="hidden" asp-for="Id" value="@Model.Id" />
+                        <div class="default-form-box mb-20">
+                            <label asp-for="City">Город <span>*</span></label>
+                            <input type="text" asp-for="City" value="@Model.City"/>
+                            <span asp-validation-for="City" />
+                        </div>
+                        <div class="default-form-box mb-20">
+                            <label asp-for="Area">Район <span>*</span></label>
+                            <input type="text" asp-for="Area" value="@Model.Area"/>
+                            <span asp-validation-for="Area" />
+                        </div>
+                        <div class="default-form-box mb-20">
+                            <label asp-for="Street">Улица <span>*</span></label>
+                            <input type="text" asp-for="Street" value="@Model.Street"/>
+                            <span asp-validation-for="Street" />
+                        </div>
+                        <div class="default-form-box mb-20">
+                            <label asp-for="House">Дом <span>*</span></label>
+                            <input type="text" asp-for="House" value="@Model.House"/>
+                            <span asp-validation-asp-for="House" />
+                        </div>
+                        <div class="default-form-box mb-20">
+                            <label asp-for="Square">Площадь <span>*</span></label>
+                            <input type="number" asp-for="Square" value="@Model.Square"/>
+                            <span asp-validation-for="Square" />
+                        </div>
+                        <div class="default-form-box mb-20">
+                            <label asp-for="Price">Цена (тыс.руб/месяц)<span>*</span></label><br />
+                            <input type="number" asp-for="Price" min="0" value="@Model.Price">
+                            <span asp-validation-for="Price" />
+                        </div>
+                        <div class="default-form-box mb-20">
+                            <label asp-for="Description">Дополнительная информация</label><br />
+                            <textarea rows="10" cols="45" asp-for="Description" value="@Model.Description"></textarea>
+                            <span asp-validation-for="Description" />
+                        </div>
+                        @if(@Model.Images != null)
+                        {
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6">
+                                         <div class="default-form-box mb-20">
+                                            <label for="image1">Главное изображение: <span>*</span></label>
+                                            <img class="img-fluid" id="image1" height="205" src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Images[0].Content))" /><br/><br/>
+                                            <input type="file" id="imgInp1" name="image1"/>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6">
+                                        <div class="default-form-box mb-20">
+                                            <label for="image1">Дополнительные: </label>
+                                            @if(Model.Images.Count > 1)
+                                            {
+                                                <img class="img-fluid" id="image2" height="205" src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Images[1].Content))" /><br/><br/>
+                                            }
+                                            else
+                                            {
+                                                <img class="img-fluid" id="image2" src="~/images/products/product-details/product-thumb-1.webp" alt=""><br/><br/>
+                                                
+                                            }
+                                            <input type="file" id="imgInp2" name="image2" />
+                                        </div>
+                                        <br/>
+                                        <div class="default-form-box mb-20">
+                                            @if(Model.Images.Count > 2)
+                                            {
+                                                <img class="img-fluid" id="image3" height="205" src="data:image/jpeg;base64,@(Convert.ToBase64String(@Model.Images[2].Content))" /><br/><br/>
+                                            }
+                                            else
+                                            {
+                                                <img class="img-fluid" id="image3" src="~/images/products/product-details/product-thumb-1.webp" alt="" /><br/><br/>
+                                            }
+                                            <input type="file" id="imgInp3" name="image3"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                        <br>
+                        <div class="save_button mt-3">
+                            <button type="submit" class="btn btn-sm btn-default-outline">Изменить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+    function readURL(input, id) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+
+        reader.onload = function(e) {
+          $(id).attr('src', e.target.result);
+        }
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+
+    $("#imgInp1").change(function() {
+      readURL(this, '#image1');
+    });
+    $("#imgInp2").change(function() {
+      readURL(this, '#image2');
+    });
+    $("#imgInp3").change(function() {
+      readURL(this, '#image3');
+    });
+</script>

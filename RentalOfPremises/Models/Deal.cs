@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 namespace RentalOfPremises.Models
 {
     [Table("Deal")]
@@ -15,6 +16,7 @@ namespace RentalOfPremises.Models
         public int OwnerId { get; set; }
         public PhysicalEntity Owner { get; set; } = null!;
         public int PlacementId { get; set; }
+        [Required]
         public Placement Placement { get; set; } = null!;
     }
 }

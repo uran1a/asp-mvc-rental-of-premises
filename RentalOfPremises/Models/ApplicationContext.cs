@@ -34,22 +34,19 @@ namespace RentalOfPremises.Models
                 .HasForeignKey(u => u.RoleId);
 
             modelBuilder.Entity<Deal>()
-                    .HasOne(d => d.Renter)
-                    .WithMany(pe => pe.RentalDeals)
-                    .HasForeignKey(d => d.RenterId)
-                    .OnDelete(DeleteBehavior.SetNull);
+                .HasOne(d => d.Renter)
+                .WithMany(pe => pe.RentalDeals)
+                .HasForeignKey(d => d.RenterId);
 
             modelBuilder.Entity<Deal>()
-                    .HasOne(d => d.Owner)
-                    .WithMany(pe => pe.OwnerDeals)
-                    .HasForeignKey(d => d.OwnerId)
-                    .OnDelete(DeleteBehavior.SetNull);
+                .HasOne(d => d.Owner)
+                .WithMany(pe => pe.OwnerDeals)
+                .HasForeignKey(d => d.OwnerId);
 
             modelBuilder.Entity<Deal>()
                 .HasOne(d => d.Placement)
                 .WithOne(p => p.Deal)
-                .HasForeignKey<Deal>(d => d.PlacementId)
-                .OnDelete(DeleteBehavior.SetNull);
+                .HasForeignKey<Deal>(d => d.PlacementId);
         }
     }
 }
