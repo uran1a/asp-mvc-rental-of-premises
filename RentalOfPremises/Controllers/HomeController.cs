@@ -19,38 +19,26 @@ namespace RentalOfPremises.Controllers
             _db = context;
             _logger = logger;
         }
-        
+
         //public async Task<IActionResult> Index(List<string>? Cities, List<CheckboxViewModel>? Areas)
-        public async Task<IActionResult> Index(PlacementFilterViewModel model)
+        public async Task<IActionResult> Index(PlacementFilterViewModel model, int page = 1)
         {
             IQueryable<Placement> placements = _db.Placements
                 .Include(p => p.Images);
             if(model != null)
             {
                 if(model.SelectedCities != null && model.SelectedCities.Count > 0)
-                {
                     placements = placements.Where(p => model.SelectedCities.Contains(p.City));
-                }
                 if (model.SelectedAreas != null && model.SelectedAreas.Count > 0)
-                {
                     placements = placements.Where(p => model.SelectedAreas.Contains(p.Area));
-                }
                 if (model.MinPrice != null)
-                {
                     placements = placements.Where(p => p.Price > model.MinPrice);
-                }
                 if (model.MaxPrice != null)
-                {
                     placements = placements.Where(p => p.Price < model.MaxPrice);
-                }
                 if (model.MinSquare != null)
-                {
                     placements = placements.Where(p => p.Square > model.MinSquare);
-                }
                 if (model.MaxSquare != null)
-                {
                     placements = placements.Where(p => p.Square < model.MaxSquare);
-                }
             }
             placements = placements
                 .Where(p => p.Deal == null)
@@ -69,7 +57,13 @@ namespace RentalOfPremises.Controllers
                 MinSquare = model.MinSquare,
                 MaxSquare = model.MaxSquare
             };
-            return View(placements);
+
+            int pageSize = 2;
+            var count = await placements.CountAsync();
+            var items = await placements.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
+            PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);
+            IndexViewModel viewModel = new IndexViewModel(items, pageViewModel);
+            return View(viewModel);
         }
         private List<SelectListItem> GetSelectListItem(List<string> values)
         {
