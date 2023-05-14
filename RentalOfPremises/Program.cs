@@ -12,7 +12,8 @@ builder.Configuration.AddJsonFile("appsettings.json");
 //подключение к бд
 string? connection = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationContext>(optionsBuilder => optionsBuilder.UseNpgsql(connection));
-
+//сервисы
+builder.Services.AddScoped<PlacementService>();
 //установка конфигурации подключения cookie
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();

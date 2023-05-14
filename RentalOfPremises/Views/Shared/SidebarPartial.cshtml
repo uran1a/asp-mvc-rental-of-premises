@@ -1,150 +1,66 @@
-﻿<div class="col-xl-3 offset-xl-1 col-lg-3">
+﻿@using RentalOfPremises.ViewModels
+@model PlacementFilterViewModel 
+<div class="col-xl-3 offset-xl-1 col-lg-3">
     <!-- Start Sidebar Area -->
     <div class="siderbar-section">
-        <!-- Start Single Sidebar Widget -->
-        <div class="sidebar-single-widget">
-            <h6 class="sidebar-title title-border">SELECT BY COLOR</h6>
-            <div class="sidebar-content">
-                <div class="filter-type-select">
-                    <ul>
-                        <li>
-                            <label class="checkbox-default" for="men">
-                                <input type="checkbox" id="men">
-                                <span>Men</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-default" for="women">
-                                <input type="checkbox" id="women">
-                                <span>Women</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-default" for="kid">
-                                <input type="checkbox" id="kid">
-                                <span>Kid</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-default" for="fashion">
-                                <input type="checkbox" id="fashion">
-                                <span>Fashion</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-default" for="new-arrival">
-                                <input type="checkbox" id="new-arrival">
-                                <span>New Arrival</span>
-                            </label>
-                        </li>
-                    </ul>
+        <form asp-action="Index" asp-controller="Home" method="get">
+            <div class="sidebar-single-widget">
+                    <h6 class="sidebar-title title-border">Город</h6>
+                    <div class="sidebar-content">
+                        <div class="filter-type-select">
+                            <ul>
+                                @foreach (var item in Model.AvailableCities)
+                                {
+                                    <li>
+                                        <label class="checkbox-default" for="city">
+                                            <input type="checkbox" name="SelectedCities" value="@item.Value" id="city" 
+                                            @if(Model.SelectedCities != null && Model.SelectedCities.Contains(item.Value)){ <text> checked </text> }/>
+                                            <span style="font-size: 18px;">@item.Text</span>
+                                        </label>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                    </div>
+            </div>
+            <div class="sidebar-single-widget">
+                <h6 class="sidebar-title title-border">Районы</h6>
+                <div class="sidebar-content">
+                    <div class="filter-type-select">
+                        <ul>
+                            @foreach (var item in Model.AvailableAreas)
+                            {
+                                <li>
+                                    <label class="checkbox-default" for="area">
+                                        <input type="checkbox" name="SelectedAreas" value="@item.Value" id="area" 
+                                        @if(Model.SelectedAreas != null && Model.SelectedAreas.Contains(item.Value)){ <text> checked </text> }/>
+                                        <span style="font-size: 18px;">@item.Text</span>
+                                    </label>
+                                </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
             </div>
-        </div> <!-- End Single Sidebar Widget -->
-
-        <!-- Start Single Sidebar Widget -->
-        <div class="sidebar-single-widget">
-            <h6 class="sidebar-title title-border">Color</h6>
-            <div class="sidebar-content">
-                <div class="filter-type-select">
-                    <ul>
-                        <li>
-                            <label class="checkbox-default" for="red">
-                                <input type="checkbox" id="red">
-                                <span>Red</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-default" for="green">
-                                <input type="checkbox" id="green">
-                                <span>Green</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-default" for="blue">
-                                <input type="checkbox" id="blue">
-                                <span>Blue</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-default" for="black">
-                                <input type="checkbox" id="black">
-                                <span>Black</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-default" for="pink">
-                                <input type="checkbox" id="pink">
-                                <span>Pink</span>
-                            </label>
-                        </li>
-                    </ul>
+            <!-- Start Single Sidebar Widget -->
+            <div class="sidebar-single-widget">
+                <h6 class="sidebar-title title-border">Цена</h6>
+                <div class="sidebar-content">
+                    <input type="number" class="js-range-slider" style="border: 1.5px solid #c2c2c2; padding-left: 5px; margin-bottom: 5px; border-radius: 0.2rem;" name="MinPrice" value="@Model.MinPrice" placeholder="От"/><br/>
+                    <input type="number" class="js-range-slider" style="border: 1.5px solid #c2c2c2; padding-left: 5px; border-radius: 0.2rem;" name="MaxPrice" value="@Model.MaxPrice" placeholder="До"/>
                 </div>
-            </div>
-        </div> <!-- End Single Sidebar Widget -->
+            </div> <!-- End Single Sidebar Widget -->
 
-        <!-- Start Single Sidebar Widget -->
-        <div class="sidebar-single-widget">
-            <h6 class="sidebar-title title-border">FILTER BY PRICE</h6>
-            <div class="sidebar-content">
-                <input type="text" class="js-range-slider" name="my_range" value="" data-type="double" data-min="0" data-max="7000" data-from="500" data-to="5000" />
-            </div>
-        </div> <!-- End Single Sidebar Widget -->
-
-        <!-- Start Single Sidebar Widget -->
-        <div class="sidebar-single-widget">
-            <h6 class="sidebar-title title-border">Material</h6>
-            <div class="sidebar-content">
-                <div class="filter-type-select">
-                    <ul>
-                        <li>
-                            <label class="checkbox-default" for="fabric">
-                                <input type="checkbox" id="fabric">
-                                <span>Fabric</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-default" for="wood">
-                                <input type="checkbox" id="wood">
-                                <span>Wood</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="checkbox-default" for="cotton">
-                                <input type="checkbox" id="cotton">
-                                <span>Cotton</span>
-                            </label>
-                        </li>
-                    </ul>
+            <!-- Start Single Sidebar Widget -->
+            <div class="sidebar-single-widget">
+                <h6 class="sidebar-title title-border">Площадь</h6>
+                <div class="sidebar-content">
+                    <input type="number" class="js-range-slider" style="border: 1.5px solid #c2c2c2; padding-left: 5px; margin-bottom: 5px; border-radius: 0.2rem;" name="MinSquare" value="@Model.MinSquare" placeholder="От"/><br/>
+                    <input type="number" class="js-range-slider" style="border: 1.5px solid #c2c2c2; padding-left: 5px; border-radius: 0.2rem;" name="MaxSquare" value="@Model.MaxSquare" placeholder="До"/>
                 </div>
-            </div>
-        </div> <!-- End Single Sidebar Widget -->
-
-        <!-- Start Single Sidebar Widget -->
-        <div class="sidebar-single-widget">
-            <div class="sidebar-content">
-                <div class="banner-animate--flash">
-                    <a href="product-details-default.html" class="sidebar-banner img-responsive">
-                        <img src="assets/images/banner/banner-sidebar.webp" alt="">
-                    </a>
-                </div>
-            </div>
-        </div> <!-- End Single Sidebar Widget -->
-
-        <!-- Start Single Sidebar Widget -->
-        <div class="sidebar-single-widget">
-            <h6 class="sidebar-title title-border">Tags</h6>
-            <div class="sidebar-content">
-                <ul class="tag-link">
-                    <li><a href="">Fabric</a></li>
-                    <li><a href="">Cloth</a></li>
-                    <li><a href="">Fashion</a></li>
-                    <li><a href="">kid</a></li>
-                    <li><a href="">Fakoli</a></li>
-                </ul>
-            </div>
-        </div>
-        <!-- End Single Sidebar Widget -->
+            </div> <!-- End Single Sidebar Widget -->
+            <button class="btn btn-sm btn-default-outline mt-3"  style="width: 100%" >Фильтр</button>
+        </form>
     </div> 
     <!-- End Sidebar Area -->
 </div>
