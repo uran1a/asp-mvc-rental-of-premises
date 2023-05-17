@@ -1,0 +1,16 @@
+﻿<!DOCTYPE HTML>
+<html>
+	<head>
+		@await Html.PartialAsync("MetatagsPartial")
+		@await Html.PartialAsync("CssPartial")
+		@await Html.PartialAsync("AdminCssPartial")
+	</head>
+	<body>
+		@await Html.PartialAsync("SidebarPartial")
+		<!-- Main -->
+		@RenderBody()
+		<!-- Scripts -->
+		@await Html.PartialAsync("ScriptsPartial")
+		@await Html.PartialAsync("AdminScriptsPartial")
+	</body>
+</html>

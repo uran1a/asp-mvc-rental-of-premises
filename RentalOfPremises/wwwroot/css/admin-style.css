@@ -276,8 +276,8 @@ p {
 }
 .content-section {
 	border-top: 2px solid #ddd;
-	padding-top: 80px;
-	margin-top: 80px;
+	padding-top: 40px;
+	margin-top: 40px;
 }
 #introduction.content-section {
 	margin-top: 0;
@@ -292,7 +292,6 @@ p {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  height: 20vh;
   -webkit-box-pack: left;
   -ms-flex-pack: left;
   justify-content: left;

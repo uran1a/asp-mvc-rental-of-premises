@@ -58,7 +58,7 @@ namespace RentalOfPremises.Controllers
                 MaxSquare = model.MaxSquare
             };
 
-            int pageSize = 2;
+            int pageSize = 4;
             var count = await placements.CountAsync();
             var items = await placements.Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
             PageViewModel pageViewModel = new PageViewModel(count, page, pageSize);

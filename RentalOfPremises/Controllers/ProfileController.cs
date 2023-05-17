@@ -20,11 +20,12 @@ namespace RentalOfPremises.Controllers
         public async Task<IActionResult> Index()
         {
             Console.WriteLine("Id user: " + User.Identity!.Name);
-            var physicalEntity = await _db.PhysicalEntities
-                            .Where(p => p.Id == int.Parse(User.Identity.Name!))
+            var user = await _db.Users
+                            .Include(u => u.PhysicalEntity)
+                            .Where(p => p.PhysicalEntity.Id == int.Parse(User.Identity.Name!))
                             .SingleOrDefaultAsync();
-            if(physicalEntity != null)
-                ViewBag.PhysicalEntity = physicalEntity;
+            if(user != null)
+                ViewBag.User = user;
             var placements = await _db.Placements
                            .Include(p => p.Deal)
                            .Where(p => p.PhysicalEntityId == int.Parse(User.Identity.Name!))
@@ -41,21 +42,27 @@ namespace RentalOfPremises.Controllers
                 ViewBag.RenterPlacements = renterPlacements;
             return View();
         }
-        public async Task<IActionResult> Update(PhysicalEntity model)
+        [HttpPost]
+        public async Task<IActionResult> Update(User model)
         {
             if (model == null) return RedirectToAction("Index");
+            await _db.Users
+                .Where(u => u.Id == model.Id)
+                .ExecuteUpdateAsync(s => s
+                    .SetProperty(u => u.Login, p => model.Login)
+                    .SetProperty(u => u.Password, p => model.Password));
             await _db.PhysicalEntities
-                            .Where(p => p.Id == int.Parse(User.Identity!.Name!))
-                            .ExecuteUpdateAsync(s => s
-                                .SetProperty(p => p.Name, p => model.Name)
-                                .SetProperty(p => p.Surname, p => model.Surname)
-                                //.SetProperty(p => p.Patronymic, u => model.Patronymic == null ? "" : model.Patronymic)
-                                .SetProperty(p => p.Patronymic, p => model.Patronymic)
-                                .SetProperty(p => p.Data_Of_Birth, p => model.Data_Of_Birth)
-                                .SetProperty(p => p.Mobile_Phone, p => model.Mobile_Phone)
-                                .SetProperty(p => p.Email, p => model.Email)
-                                .SetProperty(p => p.Passport_Serial, p => model.Passport_Serial)
-                                .SetProperty(p => p.Passport_Code, p => model.Passport_Code));
+                .Where(p => p.Id == model.PhysicalEntity.Id)
+                .ExecuteUpdateAsync(s => s
+                    .SetProperty(u => u.Name, p => model.PhysicalEntity.Name)
+                    .SetProperty(p => p.Surname, p => model.PhysicalEntity.Surname)
+                    //.SetProperty(p => p.Patronymic, u => model.Patronymic == null ? "" : model.Patronymic)
+                    .SetProperty(p => p.Patronymic, p => model.PhysicalEntity.Patronymic)
+                    .SetProperty(p => p.Data_Of_Birth, p => model.PhysicalEntity.Data_Of_Birth)
+                    .SetProperty(p => p.Mobile_Phone, p => model.PhysicalEntity.Mobile_Phone)
+                    .SetProperty(p => p.Email, p => model.PhysicalEntity.Email)
+                    .SetProperty(p => p.Passport_Serial, p => model.PhysicalEntity.Passport_Serial)
+                    .SetProperty(p => p.Passport_Code, p => model.PhysicalEntity.Passport_Code));
             return RedirectToAction("Index");
         }
         

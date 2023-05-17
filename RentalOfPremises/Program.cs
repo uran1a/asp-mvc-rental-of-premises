@@ -14,6 +14,7 @@ string? connection = builder.Configuration.GetConnectionString("DefaultConnectio
 builder.Services.AddDbContext<ApplicationContext>(optionsBuilder => optionsBuilder.UseNpgsql(connection));
 //сервисы
 builder.Services.AddScoped<PlacementService>();
+builder.Services.AddScoped<AdminService>();
 //установка конфигурации подключения cookie
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();
@@ -40,5 +41,8 @@ app.UseAuthorization();  //авторизация
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
+    name: "/Admin",
+    pattern: "{controller=Admin}/{action=Users}/{id?}");
 
 app.Run();
