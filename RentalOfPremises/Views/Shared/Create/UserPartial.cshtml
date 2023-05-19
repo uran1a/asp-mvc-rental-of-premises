@@ -1,0 +1,122 @@
+﻿@model RentalOfPremises.Models.User
+
+@if(@ViewData["Controller"].Equals("Admin"))
+{
+    <div class="col-sm-12 col-md-5 col-lg-5">
+        <form asp-action="CreateUser" asp-controller="@ViewData["Controller"]" asp-anti-forgery="true">
+            <div class="validation" asp-validation-summary="ModelOnly"></div>
+            <div class="default-form-box">
+                <label asp-for="Login">Логин <span>*</span></label>
+                <input type="text" asp-for="Login" />
+                <span asp-validation-for="Login" />
+            </div>
+            <div class="default-form-box">
+                <label asp-for="Password">Пароль <span>*</span></label>
+                <input type="password" asp-for="Password" />
+                <span asp-validation-for="Password" />
+            </div>
+            <div class="default-form-box">
+                <label asp-for="PhysicalEntity.Name">Имя <span>*</span></label>
+                <input type="text" asp-for="PhysicalEntity.Name" />
+                <span asp-validation-for="PhysicalEntity.Name" />
+            </div>
+            <div class="default-form-box">
+                <label asp-for="PhysicalEntity.Surname">Фамилия <span>*</span></label>
+                <input type="text" asp-for="PhysicalEntity.Surname" />
+                <span asp-validation-for="PhysicalEntity.Surname" />
+            </div>
+            <div class="default-form-box">
+                <label asp-for="PhysicalEntity.Surname">Отчество</label>
+                <input type="text" asp-for="PhysicalEntity.Surname" />
+                <span asp-validation-for="PhysicalEntity.Surname" />
+            </div>
+            <div class="default-form-box">
+                <label asp-for="PhysicalEntity.Data_Of_Birth">Дата рождения <span>*</span></label>
+                <input type="date" asp-for="PhysicalEntity.Data_Of_Birth" />
+                <span asp-validation-for="PhysicalEntity.Data_Of_Birth" />
+            </div>
+            <div class="default-form-box">
+                <label asp-for="PhysicalEntity.Mobile_Phone">Моб. телефон</label>
+                <input type="text" asp-for="PhysicalEntity.Mobile_Phone" />
+                <span asp-validation-for="PhysicalEntity.Mobile_Phone" />
+            </div>
+            <div class="default-form-box">
+                <label asp-for="PhysicalEntity.Email">Электронная почта</label>
+                <input type="text" asp-for="PhysicalEntity.Email" />
+                <span asp-validation-for="PhysicalEntity.Email" />
+            </div>
+            <div class="default-form-box">
+                <label asp-for="PhysicalEntity.Passport_Serial">Серия паспорта <span>*</span></label>
+                <input type="number" asp-for="PhysicalEntity.Passport_Serial" />
+                <span asp-validation-for="PhysicalEntity.Passport_Serial" />
+            </div>
+            <div class="default-form-box">
+                <label asp-for="PhysicalEntity.Passport_Code">Код паспорта <span>*</span></label>
+                <input type="number" asp-for="PhysicalEntity.Passport_Code" />
+                <span asp-validation-for="PhysicalEntity.Passport_Code" />
+            </div>
+            <div class="login_submit">
+                <button class="btn btn-sm btn-radius btn-default mb-4" type="submit">Создание</button>
+            </div>
+        </form>
+    </div>
+}
+else
+{
+    <form asp-action="CreateUser" asp-controller="@ViewData["Controller"]" asp-anti-forgery="true">
+        <div class="validation" asp-validation-summary="ModelOnly"></div>
+        <div class="default-form-box">
+            <label asp-for="Login">Логин <span>*</span></label>
+            <input type="text" asp-for="Login" />
+            <span asp-validation-for="Login" />
+        </div>
+        <div class="default-form-box">
+            <label asp-for="Password">Пароль <span>*</span></label>
+            <input type="password" asp-for="Password" />
+            <span asp-validation-for="Password" />
+        </div>
+        <div class="default-form-box">
+            <label asp-for="PhysicalEntity.Name">Имя <span>*</span></label>
+            <input type="text" asp-for="PhysicalEntity.Name" />
+            <span asp-validation-for="PhysicalEntity.Name" />
+        </div>
+        <div class="default-form-box">
+            <label asp-for="PhysicalEntity.Surname">Фамилия <span>*</span></label>
+            <input type="text" asp-for="PhysicalEntity.Surname" />
+            <span asp-validation-for="PhysicalEntity.Surname" />
+        </div>
+        <div class="default-form-box">
+            <label asp-for="PhysicalEntity.Surname">Отчество</label>
+            <input type="text" asp-for="PhysicalEntity.Surname" />
+            <span asp-validation-for="PhysicalEntity.Surname" />
+        </div>
+        <div class="default-form-box">
+            <label asp-for="PhysicalEntity.Data_Of_Birth">Дата рождения <span>*</span></label>
+            <input type="date" asp-for="PhysicalEntity.Data_Of_Birth" />
+            <span asp-validation-for="PhysicalEntity.Data_Of_Birth" />
+        </div>
+        <div class="default-form-box">
+            <label asp-for="PhysicalEntity.Mobile_Phone">Моб. телефон</label>
+            <input type="text" asp-for="PhysicalEntity.Mobile_Phone" />
+            <span asp-validation-for="PhysicalEntity.Mobile_Phone" />
+        </div>
+        <div class="default-form-box">
+            <label asp-for="PhysicalEntity.Email">Электронная почта</label>
+            <input type="text" asp-for="PhysicalEntity.Email" />
+            <span asp-validation-for="PhysicalEntity.Email" />
+        </div>
+        <div class="default-form-box">
+            <label asp-for="PhysicalEntity.Passport_Serial">Серия паспорта <span>*</span></label>
+            <input type="number" asp-for="PhysicalEntity.Passport_Serial" />
+            <span asp-validation-for="PhysicalEntity.Passport_Serial" />
+        </div>
+        <div class="default-form-box">
+            <label asp-for="PhysicalEntity.Passport_Code">Код паспорта <span>*</span></label>
+            <input type="number" asp-for="PhysicalEntity.Passport_Code" />
+            <span asp-validation-for="PhysicalEntity.Passport_Code" />
+        </div>
+        <div class="login_submit">
+            <button class="btn btn-sm btn-radius btn-default mb-4" type="submit">Создание</button>
+        </div>
+    </form>
+}

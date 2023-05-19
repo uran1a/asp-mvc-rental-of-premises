@@ -19,8 +19,8 @@
             </div>
             <div class="col-sm-12 col-md-9 col-lg-9">
                 <div class="tab-content dashboard_content">
-                    <div class="tab-pane fade active col-lg-6" id="physical-entity">
-                        @await Html.PartialAsync("Update/UserPartial", user)
+                    <div class="tab-pane fade active col-lg-12" id="physical-entity">
+                        @await Html.PartialAsync("Update/UserPartial", user, new ViewDataDictionary(ViewData) { { "Controller", "Profile" } })
                     </div>
                     <div class="tab-pane fade" id="placements">
                         @await Html.PartialAsync("PlacementsPartial", placements)

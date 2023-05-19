@@ -7,68 +7,64 @@
     string birthday = year + "-" + monthNewFormat + "-" + day;
 }
 <h3>Персональные данные</h3>
-<div class="login">
-    <div class="login_form_container">
-        <div class="account_login_form">
-            <form asp-action="Update" asp-controller="Profile" method="post" asp-anti-forgery="true">
-                @*<div class="validation" asp-validation-summary="ModelOnly"></div>*@
-                <input type="hidden" asp-for="Id" value="@Model.Id" />
-                <div class="default-form-box mb-15">
-                    <label asp-for="Login">Логин <span>*</span></label>
-                    <input type="text" asp-for="Login" value="@Model.Login" />
-                    <span asp-validation-for="Login" />                      
-                </div>
-                <div class="default-form-box mb-20">
-                    <label asp-for="Password">Пароль <span>*</span></label>
-                    <input type="text" asp-for="Password" value="@Model.Password"/>
-                    <span asp-validation-for="Password" />
-                </div>
-                <input type="hidden" asp-for="PhysicalEntity.Id" value="@Model.PhysicalEntity.Id" />
-                <div class="default-form-box mb-20">
-                    <label asp-for="PhysicalEntity.Name">Имя <span>*</span></label>
-                    <input type="text" asp-for="PhysicalEntity.Name" value="@Model.PhysicalEntity.Name"/>
-                    <span asp-validation-for="PhysicalEntity.Name" />
-                </div>
-                <div class="default-form-box mb-20">
-                    <label asp-for="PhysicalEntity.Surname">Фамилия <span>*</span></label>
-                    <input type="text" asp-for="PhysicalEntity.Surname" value="@Model.PhysicalEntity.Surname"/>
-                    <span asp-validation-for="PhysicalEntity.Surname" />
-                </div>
-                <div class="default-form-box mb-20">
-                    <label asp-for="PhysicalEntity.Patronymic">Отчество</label><br />
-                    <input type="text" asp-for="PhysicalEntity.Patronymic" value="@Model.PhysicalEntity.Patronymic"/>
-                    <span asp-validation-for="PhysicalEntity.Patronymic" />
-                </div>
-                <div class="default-form-box mb-20">
-                    <label asp-for="PhysicalEntity.Data_Of_Birth">Дата рождения <span>*</span></label><br />
-                    <input type="date" asp-for="PhysicalEntity.Data_Of_Birth" value="@birthday"/>
-                    <span asp-validation-for="PhysicalEntity.Data_Of_Birth" />
-                </div>
-                <div class="default-form-box mb-20">
-                    <label asp-for="PhysicalEntity.Mobile_Phone">Моб. телефон</label><br />
-                    <input type="text" asp-for="PhysicalEntity.Mobile_Phone" value="@Model.PhysicalEntity.Mobile_Phone" />
-                    <span asp-validation-for="PhysicalEntity.Mobile_Phone" />
-                </div>
-                <div class="default-form-box mb-20">
-                    <label asp-for="PhysicalEntity.Email">Электронная почта</label><br />
-                    <input type="text" asp-for="PhysicalEntity.Email" value="@Model.PhysicalEntity.Email"/>
-                    <span asp-validation-for="PhysicalEntity.Email" />
-                </div>
-                <div class="default-form-box mb-20">
-                    <label asp-for="PhysicalEntity.Passport_Serial">Серия паспорта <span>*</span></label><br />
-                    <input type="number" asp-for="PhysicalEntity.Passport_Serial" value="@Model.PhysicalEntity.Passport_Serial"/>
-                    <span asp-validation-for="PhysicalEntity.Passport_Serial" />
-                </div>
-                <div class="default-form-box mb-20">
-                    <label asp-for="PhysicalEntity.Passport_Code">Код паспорта <span>*</span></label><br />
-                    <input type="number" asp-for="PhysicalEntity.Passport_Code" value="@Model.PhysicalEntity.Passport_Code"/>
-                    <span asp-validation-for="PhysicalEntity.Passport_Code" />
-                </div>
-                <br>
-                <div class="save_button mt-3">
-                    <button class="btn btn-sm btn-default-outline" type="submit">Сохранить</button>
-                </div>
-            </form>
+<div class="col-sm-12 col-md-5 col-lg-5">
+    <form asp-action="UpdateUser" asp-controller="@ViewData["Controller"]" method="post" asp-anti-forgery="true">
+        <input type="hidden" asp-for="Id" value="@Model.Id" />
+        <div class="default-form-box mb-15">
+            <label asp-for="Login">Логин <span>*</span></label>
+            <input type="text" asp-for="Login" value="@Model.Login" />
+            <span asp-validation-for="Login" />                      
         </div>
-    </div>
+        <div class="default-form-box mb-20">
+            <label asp-for="Password">Пароль <span>*</span></label>
+            <input type="text" asp-for="Password" value="@Model.Password"/>
+            <span asp-validation-for="Password" />
+        </div>
+        <input type="hidden" asp-for="PhysicalEntity.Id" value="@Model.PhysicalEntity.Id" />
+        <div class="default-form-box mb-20">
+            <label asp-for="PhysicalEntity.Name">Имя <span>*</span></label>
+            <input type="text" asp-for="PhysicalEntity.Name" value="@Model.PhysicalEntity.Name"/>
+            <span asp-validation-for="PhysicalEntity.Name" />
+        </div>
+        <div class="default-form-box mb-20">
+            <label asp-for="PhysicalEntity.Surname">Фамилия <span>*</span></label>
+            <input type="text" asp-for="PhysicalEntity.Surname" value="@Model.PhysicalEntity.Surname"/>
+            <span asp-validation-for="PhysicalEntity.Surname" />
+        </div>
+        <div class="default-form-box mb-20">
+            <label asp-for="PhysicalEntity.Patronymic">Отчество</label>
+            <input type="text" asp-for="PhysicalEntity.Patronymic" value="@Model.PhysicalEntity.Patronymic"/>
+            <span asp-validation-for="PhysicalEntity.Patronymic" />
+        </div>
+        <div class="default-form-box mb-20">
+            <label asp-for="PhysicalEntity.Data_Of_Birth">Дата рождения <span>*</span></label>
+            <input type="date" asp-for="PhysicalEntity.Data_Of_Birth" value="@birthday"/>
+            <span asp-validation-for="PhysicalEntity.Data_Of_Birth" />
+        </div>
+        <div class="default-form-box mb-20">
+            <label asp-for="PhysicalEntity.Mobile_Phone">Моб. телефон</label>
+            <input type="text" asp-for="PhysicalEntity.Mobile_Phone" value="@Model.PhysicalEntity.Mobile_Phone" />
+            <span asp-validation-for="PhysicalEntity.Mobile_Phone" />
+        </div>
+        <div class="default-form-box mb-20">
+            <label asp-for="PhysicalEntity.Email">Электронная почта</label>
+            <input type="text" asp-for="PhysicalEntity.Email" value="@Model.PhysicalEntity.Email"/>
+            <span asp-validation-for="PhysicalEntity.Email" />
+        </div>
+        <div class="default-form-box mb-20">
+            <label asp-for="PhysicalEntity.Passport_Serial">Серия паспорта <span>*</span></label>
+            <input type="number" asp-for="PhysicalEntity.Passport_Serial" value="@Model.PhysicalEntity.Passport_Serial"/>
+            <span asp-validation-for="PhysicalEntity.Passport_Serial" />
+        </div>
+        <div class="default-form-box mb-20">
+            <label asp-for="PhysicalEntity.Passport_Code">Код паспорта <span>*</span></label>
+            <input type="number" asp-for="PhysicalEntity.Passport_Code" value="@Model.PhysicalEntity.Passport_Code"/>
+            <span asp-validation-for="PhysicalEntity.Passport_Code" />
+        </div>
+        <br>
+        <div class="save_button mt-3">
+            <button class="btn btn-sm btn-default-outline" type="submit">Сохранить</button>
+        </div>
+    </form>
 </div>
+

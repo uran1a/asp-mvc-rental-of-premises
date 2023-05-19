@@ -6,15 +6,18 @@ using RentalOfPremises.Models;
 using RentalOfPremises.ViewModels;
 using System.Diagnostics;
 using System.Security.Claims;
+using RentalOfPremises.Services;
 
 namespace RentalOfPremises.Controllers
 {
     public class AccountController : Controller
     {
         private readonly ApplicationContext _db;
-        public AccountController(ApplicationContext context)
+        private readonly UserService _userService;
+        public AccountController(ApplicationContext context, UserService userService)
         {
             _db = context;
+            _userService = userService;
         }
         [HttpGet]
         public IActionResult Login()
@@ -54,37 +57,16 @@ namespace RentalOfPremises.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> CreateUser(User model)
         {
             //Проверка на повторное нажатие
-            if (ModelState.IsValid)
+            if (model != null)
             {
-                var user = await _db.Users.FirstOrDefaultAsync(u => u.Login == model.Login);
+                var user = _userService.UserWithLogin(model.Login);
                 if (user == null)
                 {
-                    var newUser = new Models.User
-                    {
-                        Login = model.Login,
-                        Password = model.Password,
-                        PhysicalEntity = new PhysicalEntity
-                        {
-                            Name = model.Name,
-                            Surname = model.Surname,
-                            Patronymic = model.Patronymic,
-                            Data_Of_Birth = model.Data_Of_Birth,
-                            Mobile_Phone = model.Mobile_Phone,
-                            Email = model.Email,
-                            Passport_Code = model.Passport_Code,
-                            Passport_Serial = model.Passport_Serial
-                        }
-                    };
-                    Role? userRole = await _db.Roles.FirstOrDefaultAsync(r => r.Name == "user");
-                    if (userRole != null)
-                        newUser!.Role = userRole;
-                    var addedUser = _db.Users.Add(newUser);
-                    await _db.SaveChangesAsync();
-                    Console.WriteLine("Id added user: " + addedUser.Entity.Id);
-                    await Authenticate(addedUser.Entity);
+                    var newUser = await _userService.CreateUser(model);
+                    await Authenticate(newUser);
                     return RedirectToAction("Index", "Home");
                 }
                 else

@@ -201,7 +201,15 @@ img {
 .nav-item.active .nav-list-item, .nav-list-item:hover {
     background: #3f495b;
 }
-
+.nav-item-title {
+    display: block; 
+    color: #fff; 
+    background: #3b424f; 
+    padding: 14px 28px 12px; 
+    position: relative; 
+    cursor: pointer; 
+    border-bottom: 1px solid #303641;
+}
 .sub-nav-item {
     display: block;
     padding: 12px 28px 10px 49px;
@@ -219,10 +227,9 @@ img {
 
 /* content area */
 
-.content-wrapper {
+    .content-wrapper {
     padding: 25px 20px 70px;
     overflow: hidden;
-    margin-left: 300px;
 }
 .need-support {
     border-bottom: 1px solid #e5e5e5;

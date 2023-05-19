@@ -6,33 +6,24 @@
 <div class="nav-wrapper">
     <div class="logo-wrapper">
     <div class="logo-img">
-        <img src="~/images/logo_32.png" alt="">
+        <a class="nav-item-title" asp-action="Index" asp-controller="Admin"><img src="~/images/logo_32.png" alt=""></a>
     </div>
     </div>
     <div class="navigation" id="nav">
-    <div class="nav-item active">
-        <a class="nav-list-item"><i class="fa fa-play"></i>Пользователи</a>
-        <div class="sub-nav">
-            <a class="sub-nav-item active" href="#users">Таблица всех пользователей</a>
+        <div class="nav-item active">
+            <a class="nav-item-title" asp-action="Users" asp-controller="Admin"><i class="fa fa-building" aria-hidden="true"></i>Пользователи</a>
         </div>
-    </div>
-    <div class="nav-item">
-        <a class="nav-list-item"><i class="fa fa-upload"></i>Помещения</a>
-        <div class="sub-nav">
-        <a class="sub-nav-item" href="#placements">Таблица всех помещений</a>
+        <div class="nav-item">
+            <a class="nav-item-title" asp-action="Placements" asp-controller="Admin"><i class="fa fa-building" aria-hidden="true"></i>Помещения</a>
         </div>
-    </div>
-    <div class="nav-item">
-        <a class="nav-list-item"><i class="fa fa-folder-o" href="#folder-structure"></i>Договоры</a>
-        <div class="sub-nav">
-        <a class="sub-nav-item" href="#root-folder-structure">Таблица всех договоров</a>
+        <div class="nav-item">
+            <a class="nav-item-title" asp-action="Deals" asp-controller="Admin"><i class="fa fa-building" aria-hidden="true"></i>Договоры</a>
         </div>
-    </div>
-    <div class="nav-item">
-        <a class="nav-list-item"><i class="fa fa-folder-o" href="#folder-structure"></i>Профиль</a>
-        <div class="sub-nav">
-        <a class="sub-nav-item" href="#root-folder-structure">Профиль администратора</a>
+        <div class="nav-item">
+            <a asp-action="Index" asp-controller="Admin" class="nav-item-title" ><i class="fa fa-building" aria-hidden="true"></i></i>Профиль</a>
         </div>
-    </div>
+        <div class="nav-item">
+            <a asp-action="Logout" asp-controller="Account" class="nav-item-title"><i class="fa fa-sign-out" aria-hidden="true"></i>Выход</a>
+        </div>
     </div>
 </div>

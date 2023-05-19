@@ -1,30 +1,50 @@
-﻿<div class="body-wrapper container-fluid p-0">
+﻿@model ICollection<RentalOfPremises.Models.Placement>
+@{}
+<div class="body-wrapper container-fluid p-0">
     <!-- content area -->
-    <div class="content-wrapper" id="content">
+    <div class="content-wrapper" id="content" style="margin-left: 0px;">
         <div class="doc-hero-wrap">
             <div class="hero-wrap-inner">
-                <h2 class="title">Админка</h2>
+                <h2 class="title">Помещения</h2>
             </div>
         </div>
             <!-- Getting start -->
         <div class="content-section" id="users" style="display: block;">
             <div class="table_page table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Город</th>
-                        <th>Район</th>
-                        <th>Улица</th>
-                        <th>Дом</th>
-                        <th>Арендуется</th>
-                        <th>Страница</th>
-                        <th>Изменение</th>
-                        <th>Удаление</th>
-                    </tr>
-                </thead>
-                <tbody>
-                </tbody>
-            </table>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Город</th>
+                            <th>Район</th>
+                            <th>Улица</th>
+                            <th>Дом</th>
+                            <th>Площадь</th>
+                            <th>Владелец Id</th>
+                            <th>Владелец</th>
+                            <th>Изменение</th>
+                            <th>Удаление</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var placement in @Model)
+                        {   
+                            <tr>
+                                <td style="min-width: 0; text-transform: none;">@placement.Id</td>
+                                <td style="min-width: 0; text-transform: none;">@placement.City</td>
+                                <td style="min-width: 0; text-transform: none;">@placement.Area</td>
+                                <td style="min-width: 0; text-transform: none;">@placement.Street</td>
+                                <td style="min-width: 0; text-transform: none;">@placement.House</td>
+                                <td style="min-width: 0; text-transform: none;">@placement.Square</td>
+                                <td style="min-width: 0; text-transform: none;">@placement.PhysicalEntityId</td>
+                                <td style="min-width: 0; text-transform: none;">@placement.PhysicalEntity.Surname @placement.PhysicalEntity.Name @placement.PhysicalEntity.Patronymic</td>
+                                <td style="min-width: 0; text-transform: none;"><a asp-action="UpdatePlacement" asp-controller="Admin" asp-route-id="@placement.Id"><img src="~/images/icons/edit.png" alt=""></a></td>
+                                <td style="min-width: 0; text-transform: none;"><a asp-action="DeletePlacement" asp-controller="Admin" asp-route-id="@placement.Id"><img src="~/images/icons/trash_16.png" alt=""></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <a class="btn btn-sm btn-default-outline mt-3" asp-action="CreatePlacement" asp-controller="Admin">Добавить</a>
             </div>
         </div>
     </div>

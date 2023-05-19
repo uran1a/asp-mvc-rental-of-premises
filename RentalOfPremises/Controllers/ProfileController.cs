@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using RentalOfPremises.Models;
 using System.Diagnostics;
 using System.Web;
+using RentalOfPremises.Services;
 
 namespace RentalOfPremises.Controllers
 {
@@ -12,10 +13,12 @@ namespace RentalOfPremises.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationContext _db;
-        public ProfileController(ApplicationContext context, ILogger<HomeController> logger)
+        private readonly UserService _userService;
+        public ProfileController(ApplicationContext context, ILogger<HomeController> logger, UserService userService)
         {
             _db = context;
             _logger = logger;
+            _userService = userService;
         }
         public async Task<IActionResult> Index()
         {
@@ -43,29 +46,14 @@ namespace RentalOfPremises.Controllers
             return View();
         }
         [HttpPost]
-        public async Task<IActionResult> Update(User model)
+        public async Task<IActionResult> UpdateUser(User model)
         {
-            if (model == null) return RedirectToAction("Index");
-            await _db.Users
-                .Where(u => u.Id == model.Id)
-                .ExecuteUpdateAsync(s => s
-                    .SetProperty(u => u.Login, p => model.Login)
-                    .SetProperty(u => u.Password, p => model.Password));
-            await _db.PhysicalEntities
-                .Where(p => p.Id == model.PhysicalEntity.Id)
-                .ExecuteUpdateAsync(s => s
-                    .SetProperty(u => u.Name, p => model.PhysicalEntity.Name)
-                    .SetProperty(p => p.Surname, p => model.PhysicalEntity.Surname)
-                    //.SetProperty(p => p.Patronymic, u => model.Patronymic == null ? "" : model.Patronymic)
-                    .SetProperty(p => p.Patronymic, p => model.PhysicalEntity.Patronymic)
-                    .SetProperty(p => p.Data_Of_Birth, p => model.PhysicalEntity.Data_Of_Birth)
-                    .SetProperty(p => p.Mobile_Phone, p => model.PhysicalEntity.Mobile_Phone)
-                    .SetProperty(p => p.Email, p => model.PhysicalEntity.Email)
-                    .SetProperty(p => p.Passport_Serial, p => model.PhysicalEntity.Passport_Serial)
-                    .SetProperty(p => p.Passport_Code, p => model.PhysicalEntity.Passport_Code));
+            if (model == null) 
+                return RedirectToAction("Index");
+            else 
+                await _userService.UpdateUser(model);
             return RedirectToAction("Index");
         }
-        
     }
 }
 

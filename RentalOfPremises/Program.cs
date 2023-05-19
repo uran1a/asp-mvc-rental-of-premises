@@ -14,7 +14,7 @@ string? connection = builder.Configuration.GetConnectionString("DefaultConnectio
 builder.Services.AddDbContext<ApplicationContext>(optionsBuilder => optionsBuilder.UseNpgsql(connection));
 //сервисы
 builder.Services.AddScoped<PlacementService>();
-builder.Services.AddScoped<AdminService>();
+builder.Services.AddScoped<UserService>();
 //установка конфигурации подключения cookie
 builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
     .AddCookie();

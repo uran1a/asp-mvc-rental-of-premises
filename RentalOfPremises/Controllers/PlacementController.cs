@@ -24,7 +24,7 @@ namespace RentalOfPremises.Controllers
         public async Task<IActionResult> Index(int id)
         {
             Console.WriteLine("Id placement: " + id);
-            var placement = await _placementService.GetPlacementFindByIdAsync(id);
+            var placement = await _placementService.PlacementFindByIdAsync(id);
             if (placement.PhysicalEntityId == int.Parse(User.Identity!.Name!))
                 ViewBag.IsOwner = true;
             else 
@@ -38,7 +38,7 @@ namespace RentalOfPremises.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Placement model, List<IFormFile> images)
+        public async Task<IActionResult> CreatePlacement(Placement model, List<IFormFile> images)
         {
             if (model != null)
             {
@@ -75,52 +75,25 @@ namespace RentalOfPremises.Controllers
                 .Include(p => p.Images)
                 .Where(p => p.Id == id).SingleOrDefaultAsync());
         }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Update(Placement model, IFormFile image1, IFormFile image2, IFormFile image3)
+        public async Task<IActionResult> UpdatePlacement(Placement model, IFormFile image1, IFormFile image2, IFormFile image3)
         {
-            if(model != null)
-            {
-                await _db.Placements
-                    .Where(p => p.Id == model.Id)
-                    .ExecuteUpdateAsync(s => s
-                        .SetProperty(p => p.City, p => model.City)
-                        .SetProperty(p => p.Area, p => model.Area)
-                        .SetProperty(p => p.Street, p => model.Street)
-                        .SetProperty(p => p.House, p => model.House)
-                        .SetProperty(p => p.Square, p => model.Square)
-                        .SetProperty(p => p.Price, p => model.Price)
-                        .SetProperty(p => p.Description, p => model.Description));
-                 List<IFormFile?> images = new List<IFormFile?> { image1, image2, image3 };
-                for(int i = 0; i < images.Count; i++)
-                {
-                    if (images[i] != null)
-                    {
-                        byte[] imageData = null;
-                        using (var binaryReader = new BinaryReader(images[i].OpenReadStream()))
-                        {
-                            imageData = binaryReader.ReadBytes((int)images[i].Length);
-                        }
-                        var image = await _db.Images
-                            .Where(i => i.PlacementId == model.Id)
-                            .Where(i => i.FileName.Equals("image0"))
-                            .ExecuteUpdateAsync(i => i
-                                .SetProperty(i => i.Content, i => imageData)
-                                .SetProperty(i => i.ContentType, i => image1.ContentType));
-                    }
-                }
-                
-            }
+            await _placementService.UpdatePlacementAsync(model, new List<IFormFile?> { image1, image2, image3 });
             return Redirect("~/Profile/Index");
         }
+
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
         {
-            var placement = await _db.Placements
-                .Where(p => p.Id == id).SingleOrDefaultAsync();
-            _db.Placements.Remove(placement!);
-            await _db.SaveChangesAsync();
+            await _placementService.DeletePlacementByIdAsync(id);
             return Redirect("~/Profile/Index");
+        }
+
+        private void DeletePlacementByIdAsync(int id)
+        {
+            throw new NotImplementedException();
         }
 
         public IActionResult Conditions(int placementId, int ownerId)

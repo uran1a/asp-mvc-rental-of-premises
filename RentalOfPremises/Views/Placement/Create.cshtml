@@ -9,62 +9,7 @@
             <div class="col-md-8 mx-auto">
                 <div class="account_form">
                     <h3>Добавление нового помещения</h3>
-                    <form asp-action="Create" asp-controller="Placement" method="post" enctype="multipart/form-data">
-                        <input type="hidden" asp-for="PhysicalEntityId" value="@physicalEntityId" />
-                        <div class="default-form-box mb-20">
-                            <label asp-for="City">Город <span>*</span></label>
-                            <input type="text" asp-for="City" />
-                            <span asp-validation-for="City" />
-                        </div>
-                        <div class="default-form-box mb-20">
-                            <label asp-for="Area">Район <span>*</span></label>
-                            <input type="text" asp-for="Area"/>
-                            <span asp-validation-for="Area" />
-                        </div>
-                        <div class="default-form-box mb-20">
-                            <label asp-for="Street">Улица <span>*</span></label><br />
-                            <input type="text" asp-for="Street"/>
-                            <span asp-validation-for="Street" />
-                        </div>
-                        <div class="default-form-box mb-20">
-                            <label asp-for="House">Дом <span>*</span></label><br />
-                            <input type="text" asp-for="House"/>
-                            <span asp-validation-asp-for="House" />
-                        </div>
-                        <div class="default-form-box mb-20">
-                            <label asp-for="Square">Площадь <span>*</span></label><br />
-                            <input type="number" asp-for="Square"/>
-                            <span asp-validation-for="Square" />
-                        </div>
-                        <div class="default-form-box mb-20">
-                            <label asp-for="YearConstruction">Дата постройки <span>*</span></label><br />
-                            <input type="number" asp-for="YearConstruction" min="1900" max="2023" step="1" value = "2023"/>
-                            <span asp-validation-for="YearConstruction" />
-                        </div>
-                        <div class="default-form-box mb-20">
-                            <label asp-for="Price">Цена (тыс.руб/месяц)<span>*</span></label><br />
-                            <input type="number" asp-for="Price" min="0" />
-                            <span asp-validation-for="Price" />
-                        </div>
-                        <div class="default-form-box mb-20">
-                            <label asp-for="Description">Дополнительная информация</label><br />
-                            <textarea rows="10" cols="45" asp-for="Description"></textarea>
-                            <span asp-validation-for="Description" />
-                        </div>
-                        <div class="default-form-box mb-20">
-                            <label for="image1">Главное изображение: <span>*</span></label><br />
-                            <input type="file" name="images" id="image1" multiple />
-                            <span validation-for="image1" />
-                            <label for="image2_3">Дополнительное изображение: <span>*</span></label><br />
-                            <input type="file" name="images" id="image2_3" multiple />
-                            <input type="file" name="images" id="image2_3" multiple />
-                            <span validation-for="image2_3" />
-                        </div>
-                        <br>
-                        <div class="save_button mt-3">
-                            <button type="submit" class="btn btn-sm btn-default-outline">Добавить</button>
-                        </div>
-                    </form>
+                     @await Html.PartialAsync("Create/PlacementPartial", new Placement(), new ViewDataDictionary(ViewData) { { "Controller", "Placement" }, { "PhysicalEntityId", @ViewBag.UserId } });
                 </div>
             </div>
         </div>

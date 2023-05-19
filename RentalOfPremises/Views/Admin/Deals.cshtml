@@ -1,0 +1,46 @@
+﻿@model ICollection<RentalOfPremises.Models.Deal>
+@{}
+<div class="body-wrapper container-fluid p-0">
+    <!-- content area -->
+    <div class="content-wrapper" id="content" style="margin-left: 0px;">
+        <div class="doc-hero-wrap">
+            <div class="hero-wrap-inner">
+                <h2 class="title">Договора</h2>
+            </div>
+        </div>
+            <!-- Getting start -->
+        <div class="content-section" id="users" style="display: block;">
+            <div class="table_page table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Дата заключения</th>
+                            <th>Дата начала аренды</th>
+                            <th>Дата конца аренды</th>
+                            <th>Арендодатель</th>
+                            <th>Арендатор</th>
+                            <th>Помещение</th>
+                            <th>Удаление</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach(var deal in @Model)
+                        {   
+                            <tr>
+                                <td style="min-width: 0; text-transform: none;">@deal.Id</td>
+                                <td style="min-width: 0; text-transform: none;">@deal.DateOfConclusion</td>
+                                <td style="min-width: 0; text-transform: none;">@deal.StartDateRental</td>
+                                <td style="min-width: 0; text-transform: none;">@deal.EndDateRental</td>
+                                <td style="min-width: 0; text-transform: none;">@deal.Owner.Name @deal.Owner.Surname @deal.Owner.Patronymic</td>
+                                <td style="min-width: 0; text-transform: none;">@deal.Renter.Name @deal.Renter.Surname @deal.Renter.Patronymic</td>
+                                <td style="min-width: 0; text-transform: none;">г.@deal.Placement.City ул.@deal.Placement.Street @deal.Placement.House</td>
+                                <td style="min-width: 0; text-transform: none;"><a asp-action="DeletDeal" asp-controller="Admin" asp-route-id="@deal.Id"><img src="~/images/icons/trash_16.png" alt=""></a></td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
