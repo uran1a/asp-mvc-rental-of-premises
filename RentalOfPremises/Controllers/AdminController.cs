@@ -15,16 +15,15 @@ namespace RentalOfPremises.Controllers
     {
         private readonly UserService _userService;
         private readonly PlacementService _placementService;
-        public AdminController(UserService userService, PlacementService placementService)
+        private readonly DealService _dealService;
+        public AdminController(UserService userService, PlacementService placementService, DealService dealService)
         {
             _userService = userService;
             _placementService = placementService;
+            _dealService = dealService;
         }
         [HttpGet]
-        public async Task<IActionResult> Users()
-        {
-            return View(await _userService.AllUsers());
-        }
+        public async Task<IActionResult> Users() => View(await _userService.AllUsers());
         
         public IActionResult CreateUser()
         {
@@ -71,15 +70,42 @@ namespace RentalOfPremises.Controllers
             return Redirect("~/Admin");
         }
         [HttpGet]
-        public async Task<IActionResult> Placements()
-        {
-            return View(await _placementService.AllPlacementsAsync());
-        }
+       // public async Task<IActionResult> Placements() => View(await _placementService.AllPlacementsAsync());
         public IActionResult CreatePlacement()
         {
             ViewBag.Layout = "/View/Admin/_Layout.cshtml";
             ViewData["Controller"] = "Admin";
             return View("Create/PlacementPartial", new Placement());
+        }
+        [HttpGet]
+        public async Task<IActionResult> Placements(PlacementAdminFilterViewModel model)
+        {
+            if (model.TypeFilter != null && model.Condition != null && model.Count >= 0)
+            {
+                int numberTypeFilter;
+                if (model.NumberTypeFilter() >= 0)
+                    numberTypeFilter = model.NumberTypeFilter();
+                else return View();
+                switch (numberTypeFilter)
+                {
+                    case 1:
+                        {
+                            model.AvailablePlacements = await _placementService.CountUserPlacementsAsync(model.Condition, model.Count);
+                            model.HasCreate = false; model.HasUpdate = false; model.HasDelete = false;
+                        }
+                        break;
+                    case 2:
+                        model.AvailablePlacements = await _placementService.CountCityPlacementsAsync(model.Condition, model.Count);
+                        model.HasCreate = false; model.HasUpdate = false; model.HasDelete = false;
+                        break;
+                }
+            }
+            else
+            {
+                model.AvailablePlacements = await _placementService.AllPlacementsAdminViewModelAsync();
+                model.HasCreate = true; model.HasUpdate = true; model.HasDelete = true;
+            }
+            return View(model);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -106,5 +132,12 @@ namespace RentalOfPremises.Controllers
             await _placementService.DeletePlacementByIdAsync(id);
             return Redirect("~/Admin");
         }
+        public async Task<IActionResult> Deals() => View(await _dealService.AllDealsAsync());
+        public async Task<IActionResult> DeleteDeal(int id)
+        {
+            await _dealService.DeleteDealById(id);
+            return Redirect("~/Admin");
+        }
+        public async Task<IActionResult> Index() => View(await _userService.UserById(int.Parse(User.Identity!.Name!)));
     }
 }

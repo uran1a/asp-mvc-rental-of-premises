@@ -1,5 +1,35 @@
-﻿@model ICollection<RentalOfPremises.Models.Placement>
-@{}
+﻿@model RentalOfPremises.ViewModels.PlacementAdminFilterViewModel
+@{
+    List<string> headers = new();
+    List<string> bodies = new();
+    if(Model.AvailablePlacements.Count > 0)
+    {
+        var placement = Model.AvailablePlacements[0];
+        if (placement.Id != null)
+            headers.Add(placement.Id.Keys.First()); 
+        if (placement.City != null)
+            headers.Add(placement.City.Keys.First()); 
+        if (placement.Area != null)
+            headers.Add(placement.Area.Keys.First()); 
+        if (placement.Street != null)
+            headers.Add(placement.Street.Keys.First()); 
+        if (placement.House != null)
+            headers.Add(placement.House.Keys.First()); 
+        if (placement.Square != null)
+            headers.Add(placement.Square.Keys.First()); 
+        if (placement.PhysicalEntityId != null)
+            headers.Add(placement.PhysicalEntityId.Keys.First()); 
+        if (placement.PhysicalEntityFullName != null)
+            headers.Add(placement.PhysicalEntityFullName.Keys.First()); 
+        if (placement.Count != null)
+            headers.Add(placement.Count.Keys.First());
+        if (Model.HasUpdate)
+            headers.Add("Обновить");
+        if (Model.HasDelete)
+            headers.Add("Удалить");
+    }
+    
+}
 <div class="body-wrapper container-fluid p-0">
     <!-- content area -->
     <div class="content-wrapper" id="content" style="margin-left: 0px;">
@@ -10,41 +40,86 @@
         </div>
             <!-- Getting start -->
         <div class="content-section" id="users" style="display: block;">
+            <form method="get" asp-action="Placements" asp-controller="Admin">
+                <div class="mb-15">
+                    <select asp-for="TypeFilter" style="font-size: 16px" >
+                        <option>1. Кол-во помещений у пользотелей</option>
+                        <option>2. Кол-во помещений в городе</option>
+                    </select>
+                    <input type="radio" id="contactChoice1" asp-for="Condition" value=">" style="width: auto;" />
+                    <label for="contactChoice1"  style="font-size: 16px" checked>Больше</label>
+                    <input type="radio" id="contactChoice2" asp-for="Condition" value="<" style="width: auto; margin-left: 10px"/>
+                    <label for="contactChoice2" style="font-size: 16px" >Меньше</label> 
+                    <input type="number" asp-for="Count" placeholder="Кол-во" style="border: 1.5px solid #c2c2c2; padding-left: 5px; margin-bottom: 5px; border-radius: 0.2rem; font-size: 14px; width: auto;" />
+                    <input type="submit" style="border: 1.5px solid #c2c2c2; padding: 2px 10px 2px 10px; margin-bottom: 5px; border-radius: 0.2rem; font-size: 14px; width: auto;" value="Фильтр" />
+                </div>
+            </form>
             <div class="table_page table-responsive">
                 <table>
                     <thead>
                         <tr>
-                            <th>Id</th>
-                            <th>Город</th>
-                            <th>Район</th>
-                            <th>Улица</th>
-                            <th>Дом</th>
-                            <th>Площадь</th>
-                            <th>Владелец Id</th>
-                            <th>Владелец</th>
-                            <th>Изменение</th>
-                            <th>Удаление</th>
+                            @foreach(var item in headers)
+                            {
+                                <th>@item</th>
+                            }
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach(var placement in @Model)
-                        {   
+                        @foreach(var placement in Model.AvailablePlacements)
+                        {
                             <tr>
-                                <td style="min-width: 0; text-transform: none;">@placement.Id</td>
-                                <td style="min-width: 0; text-transform: none;">@placement.City</td>
-                                <td style="min-width: 0; text-transform: none;">@placement.Area</td>
-                                <td style="min-width: 0; text-transform: none;">@placement.Street</td>
-                                <td style="min-width: 0; text-transform: none;">@placement.House</td>
-                                <td style="min-width: 0; text-transform: none;">@placement.Square</td>
-                                <td style="min-width: 0; text-transform: none;">@placement.PhysicalEntityId</td>
-                                <td style="min-width: 0; text-transform: none;">@placement.PhysicalEntity.Surname @placement.PhysicalEntity.Name @placement.PhysicalEntity.Patronymic</td>
-                                <td style="min-width: 0; text-transform: none;"><a asp-action="UpdatePlacement" asp-controller="Admin" asp-route-id="@placement.Id"><img src="~/images/icons/edit.png" alt=""></a></td>
-                                <td style="min-width: 0; text-transform: none;"><a asp-action="DeletePlacement" asp-controller="Admin" asp-route-id="@placement.Id"><img src="~/images/icons/trash_16.png" alt=""></a></td>
+                                @if (placement.Id != null)
+                                {
+                                    <td>@placement.Id.Values.First().ToString()</td> 
+                                }
+                                @if (placement.City != null)
+                                {
+                                    <td>@placement.City.Values.First().ToString()</td> 
+                                }
+                                @if (placement.Area != null)
+                                {
+                                    <td>@placement.Area.Values.First().ToString()</td> 
+                                }
+                                @if (placement.Street != null)
+                                {
+                                        <td>@placement.Street.Values.First().ToString()</td> 
+                                }
+                                @if (placement.House != null)
+                                {
+                                    <td>@placement.House.Values.First().ToString()</td> 
+                                }
+                                @if (placement.Square != null)
+                                {
+                                    <td>@placement.Square.Values.First().ToString()</td> 
+                                }
+                                @if (@placement.PhysicalEntityId != null)
+                                {
+                                    <td>@placement.PhysicalEntityId.Values.First().ToString()</td> 
+                                }
+                                @if (placement.PhysicalEntityFullName != null)
+                                {
+                                    <td>@placement.PhysicalEntityFullName.Values.First().ToString()</td> 
+                                }
+                                @if (placement.Count != null)
+                                {
+                                    <td>@placement.Count.Values.First().ToString()</td> 
+                                }
+                                @if (Model.HasUpdate)
+                                {
+                                    <td style="min-width: 0; text-transform: none;"><a asp-action="UpdatePlacement" asp-controller="Admin" asp-route-id="@placement.Id.Values.First()"><img src="~/images/icons/edit.png" alt=""></a></td>
+                                }
+                                @if (Model.HasDelete)
+                                {
+                                    <td style="min-width: 0; text-transform: none;"><a asp-action="DeletePlacement" asp-controller="Admin" asp-route-id="@placement.Id.Values.First()"><img src="~/images/icons/trash_16.png" alt=""></a></td>
+                                }
                             </tr>
                         }
                     </tbody>
                 </table>
-                <a class="btn btn-sm btn-default-outline mt-3" asp-action="CreatePlacement" asp-controller="Admin">Добавить</a>
+                @if (Model.HasCreate)
+                {
+                    <a class="btn btn-sm btn-default-outline mt-3" asp-action="CreatePlacement" asp-controller="Admin">Добавить</a>
+                }
             </div>
         </div>
     </div>

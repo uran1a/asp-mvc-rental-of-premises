@@ -1,0 +1,4 @@
+﻿@model RentalOfPremises.Models.User
+@{
+}
+@await Html.PartialAsync("Update/UserPartial", @Model, new ViewDataDictionary(ViewData) { { "Controller", "Admin" } });

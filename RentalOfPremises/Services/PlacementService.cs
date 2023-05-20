@@ -1,5 +1,7 @@
 ﻿using RentalOfPremises.Models;
 using Microsoft.EntityFrameworkCore;
+using RentalOfPremises.ViewModels;
+using System.Linq;
 
 namespace RentalOfPremises.Services
 {
@@ -18,6 +20,30 @@ namespace RentalOfPremises.Services
                 .Include(p => p.Images)
                 .Include(p => p.PhysicalEntity)
                 .ToListAsync();
+        }
+        public async Task<List<PlacementAdminViewModel>> AllPlacementsAdminViewModelAsync()
+        {
+            List<PlacementAdminViewModel> toReturn = new();
+            var allPlacements = await _dbContext.Placements
+                .Include(p => p.Images)
+                .Include(p => p.PhysicalEntity)
+                .ToListAsync();
+            foreach(var placement in allPlacements)
+            {
+                toReturn.Add(new PlacementAdminViewModel
+                {
+                    Id = new Dictionary<string, int>() { { "Id", placement.Id } },
+                    City = new Dictionary<string, string>() { { "Город", placement.City } },
+                    Area = new Dictionary<string, string>() { { "Район", placement.Area } },
+                    Street = new Dictionary<string, string>() { { "Улица", placement.Street } },
+                    House = new Dictionary<string, string>() { { "Дом", placement.House } },
+                    Square = new Dictionary<string, int>() { { "Площадь", placement.Square } },
+                    YearConstructiom = new Dictionary<string, int>() { { "Id владельца", placement.PhysicalEntityId } },
+                    PhysicalEntityId = new Dictionary<string, int>() { { "Дата постройки", placement.YearConstruction } },
+                    PhysicalEntityFullName = new Dictionary<string, string>() { { "Владелец", placement.PhysicalEntity.Surname + " " + placement.PhysicalEntity.Name + " " + placement.PhysicalEntity.Patronymic } }
+                });
+            }
+            return toReturn;
         }
         public async Task<Placement> PlacementFindByIdAsync(int id)
         {
@@ -130,6 +156,44 @@ namespace RentalOfPremises.Services
             _dbContext.Placements.Remove(placement!);
             await _dbContext.SaveChangesAsync();
             _logger.LogInformation("Delete placement with Id = {0}", placement.Id);
+        }
+        public async Task<List<PlacementAdminViewModel>> CountUserPlacementsAsync(string condition, int count)
+        {
+            List<PlacementAdminViewModel> availablePlacements = await _dbContext.Placements
+                 .GroupBy(p => p.PhysicalEntityId)
+                 .Select(p => new PlacementAdminViewModel
+                 {
+                     PhysicalEntityId = new Dictionary<string, int>() { { "Id", p.Key } },
+                     Count = new Dictionary<string, int>() { { "Кол-во помещений", p.Count() } },
+                 }).ToListAsync();
+            foreach(var availablePlacement in availablePlacements)
+            {
+               var placement = await _dbContext.PhysicalEntities
+                    .Where(ph => ph.Id == availablePlacement.PhysicalEntityId.Values.First()).SingleOrDefaultAsync();
+                if(placement != null)
+                    availablePlacement.PhysicalEntityFullName = new Dictionary<string, string>() { { "Владелец", placement.Surname + " " + placement.Name + " " + placement.Patronymic } };
+            }
+            if (condition.Equals(">"))
+                availablePlacements = availablePlacements.Where(p => p.Count.Values.First() > count).ToList();
+            else if (condition.Equals("<"))
+                availablePlacements = availablePlacements.Where(p => p.Count.Values.First() < count).ToList();
+            return availablePlacements;
+        }
+        public async Task<List<PlacementAdminViewModel>> CountCityPlacementsAsync(string condition, int count)
+        {
+
+            List<PlacementAdminViewModel> availablePlacements = await _dbContext.Placements
+                   .GroupBy(p => p.City)
+                   .Select(p => new PlacementAdminViewModel
+                   { 
+                       City = new Dictionary<string, string>() { { "Город", p.Key } },
+                       Count = new Dictionary<string, int>() { { "Кол-во помещений", p.Count() } },
+                   }).ToListAsync();
+            if (condition.Equals(">"))
+                availablePlacements = availablePlacements.Where(p => p.Count.Values.First() > count).ToList();
+            else if (condition.Equals("<"))
+                availablePlacements = availablePlacements.Where(p => p.Count.Values.First() < count).ToList();
+            return availablePlacements;
         }
     }
 }
