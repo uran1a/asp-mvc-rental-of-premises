@@ -90,6 +90,33 @@ namespace RentalOfPremises.Controllers
             await _placementService.DeletePlacementByIdAsync(id);
             return Redirect("~/Profile/Index");
         }
+        [HttpGet]
+        public async Task<IActionResult> Download(int id)
+        {
+            Deal? deal = await _db.Deals
+                .Include(d => d.Owner)
+                .Include(d => d.Renter)
+                .Include(d => d.Placement).FirstOrDefaultAsync(d => d.Id == id);
+            if (deal != null)
+            {
+                WordHelper wordHelper = new WordHelper("template.docx");
+                var items = new Dictionary<string, string>()
+                {
+                    {"<Owner>", deal.Owner.Surname + " " + deal.Owner.Name + " " + deal.Owner.Patronymic },
+                    {"<Renter>", deal.Renter.Surname + " " + deal.Renter.Name + " " + deal.Renter.Patronymic },
+                    {"<Square>", deal.Placement.Square.ToString() },
+                    {"<City>", deal.Placement.City },
+                    {"<Area>", deal.Placement.Area },
+                    {"<Street>", deal.Placement.Street },
+                    {"<House>", deal.Placement.House },
+                    {"<StartRental>", deal.StartDateRental.ToShortDateString() },
+                    {"<EndRental>", deal.StartDateRental.ToShortDateString() },
+                    {"<Conclusion>", DateTime.Now.ToShortDateString() }
+                };
+                wordHelper.Process(items);
+            }
+            return Redirect("~/Profile/Index");
+        }
 
         private void DeletePlacementByIdAsync(int id)
         {

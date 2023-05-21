@@ -5,6 +5,7 @@ using RentalOfPremises.Models;
 using System.Diagnostics;
 using RentalOfPremises.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using RentalOfPremises.Services;
 
 namespace RentalOfPremises.Controllers
 {
@@ -13,14 +14,12 @@ namespace RentalOfPremises.Controllers
     {
         private readonly ILogger<HomeController> _logger;
         private readonly ApplicationContext _db;
-
         public HomeController(ApplicationContext context, ILogger<HomeController> logger)
         {
             _db = context;
             _logger = logger;
+            
         }
-
-        //public async Task<IActionResult> Index(List<string>? Cities, List<CheckboxViewModel>? Areas)
         public async Task<IActionResult> Index(PlacementFilterViewModel model, int page = 1)
         {
             IQueryable<Placement> placements = _db.Placements
@@ -72,7 +71,6 @@ namespace RentalOfPremises.Controllers
                 ToReturn.Add(new SelectListItem { Text = item, Value = item });
             return ToReturn;
         }
-
         public async Task<IActionResult> Messages()
         {
             var messages = await _db.Deals
@@ -85,11 +83,29 @@ namespace RentalOfPremises.Controllers
         }
         public async Task<IActionResult> ConcludeDeal(int dealId)
         {
-            Deal? deal = await _db.Deals.FirstOrDefaultAsync(d => d.Id == dealId);
+            Deal? deal = await _db.Deals
+                .Include(d => d.Owner)
+                .Include(d => d.Renter)
+                .Include(d => d.Placement).FirstOrDefaultAsync(d => d.Id == dealId);
             if (deal != null)
             {
                 deal.DateOfConclusion = DateTime.Now;
                 _db.SaveChanges();
+                WordHelper wordHelper = new WordHelper("template.docx");
+                var items = new Dictionary<string, string>()
+                {
+                    {"<Owner>", deal.Owner.Surname + " " + deal.Owner.Name + " " + deal.Owner.Patronymic },
+                    {"<Renter>", deal.Renter.Surname + " " + deal.Renter.Name + " " + deal.Renter.Patronymic },
+                    {"<Square>", deal.Placement.Square.ToString() },
+                    {"<City>", deal.Placement.City },
+                    {"<Area>", deal.Placement.Area },
+                    {"<Street>", deal.Placement.Street },
+                    {"<House>", deal.Placement.House },
+                    {"<StartRental>", deal.StartDateRental.ToShortDateString() },
+                    {"<EndRental>", deal.StartDateRental.ToShortDateString() },
+                    {"<Conclusion>", DateTime.Now.ToShortDateString() }
+                };
+                wordHelper.Process(items);
             }
             return Redirect("~/Home/Messages");
         }

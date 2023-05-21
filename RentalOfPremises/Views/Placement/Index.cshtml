@@ -125,7 +125,7 @@
                                                 <h5>Арендуется: Да</h5>
                                                 <h5>Арендатор: @Model.Deal.Renter.Name @Model.Deal.Renter.Surname @Model.Deal.Renter.Patronymic </h5>
                                                 @*<h5>Договор: @Model.Deal.File</h5>*@
-                                                <h5>Договор: file.docx</h5>
+                                                <h5>Договор: <a asp-action="Download" asp-controller="Placement" asp-route-id="@Model.Deal.Id"><img src="~/images/icons/word_file.png" alt=""></a></h5>
                                             }
                                             else
                                             {
