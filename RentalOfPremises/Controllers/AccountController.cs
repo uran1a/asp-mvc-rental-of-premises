@@ -7,6 +7,7 @@ using RentalOfPremises.ViewModels;
 using System.Diagnostics;
 using System.Security.Claims;
 using RentalOfPremises.Services;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace RentalOfPremises.Controllers
 {
@@ -62,7 +63,7 @@ namespace RentalOfPremises.Controllers
             //Проверка на повторное нажатие
             if (model != null)
             {
-                var user = _userService.UserWithLogin(model.Login);
+                User? user = await _userService.UserWithLogin(model.Login);
                 if (user == null)
                 {
                     var newUser = await _userService.CreateUser(model);
@@ -74,7 +75,7 @@ namespace RentalOfPremises.Controllers
                     ModelState.AddModelError("", "Пользователь с таким логин уже существует");
                 }
             }
-            return View(model);
+            return View("Account/Register");
         }
         private async Task Authenticate(User user)
         {

@@ -3,7 +3,12 @@
 	<head>
 		@await Html.PartialAsync("MetatagsPartial")
 		@await Html.PartialAsync("CssPartial")
-		@await Html.PartialAsync("AdminCssPartial")
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="icon" type="image/x-icon" href="~/images/logo.ico" />
+		<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700" rel="stylesheet" type="text/css" />
+		<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="~/css/admin-style.css" type="text/css" media="all" />
 	</head>
 	<body>
 		
@@ -22,6 +27,8 @@
 		</div>
 		<!-- Scripts -->
 		@await Html.PartialAsync("ScriptsPartial")
-		@await Html.PartialAsync("AdminScriptsPartial")
+		<script type="text/javascript" src="~/js/admin/jquery.js"></script>
+		<script type="text/javascript" src="~/js/admin/bootstrap.min.js"></script>
+		<script type="text/javascript" src="~/js/admin/script.js"></script>
 	</body>
 </html>

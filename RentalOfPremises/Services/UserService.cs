@@ -36,12 +36,12 @@ namespace RentalOfPremises.Services
         }
         public async Task<User> UserWithLogin(string login)
         {
-            var user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Login == login);
+            User? user = await _dbContext.Users.FirstOrDefaultAsync(u => u.Login == login);
             if (user != null)
                 _logger.LogInformation("Get users with login = {0}", login);
             else
                 _logger.LogError("Can't get user with login = {0}", login);
-            return user!;
+            return user;
         }
         public async Task DeleteUserById(int id)
         {
